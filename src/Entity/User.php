@@ -20,17 +20,10 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $userName;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstName;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $function;
+   
 
     /**
      * @ORM\Column(type="json")
@@ -49,46 +42,35 @@ class User
      */
     private $examId;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $passWord;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Profil::class, mappedBy="userId", cascade={"persist", "remove"})
+     */
+    private $profilId;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getuserName(): ?string
     {
-        return $this->name;
+        return $this->userName;
     }
 
-    public function setName(string $name): self
+    public function setuserName(string $userName): self
     {
-        $this->name = $name;
+        $this->userName = $userName;
 
         return $this;
     }
 
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
+ 
 
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getFunction(): ?string
-    {
-        return $this->function;
-    }
-
-    public function setFunction(string $function): self
-    {
-        $this->function = $function;
-
-        return $this;
-    }
 
     public function getRoles(): ?array
     {
@@ -122,6 +104,35 @@ class User
     public function setExamId(?Exam $examId): self
     {
         $this->examId = $examId;
+
+        return $this;
+    }
+
+    public function getPassWord(): ?string
+    {
+        return $this->passWord;
+    }
+
+    public function setPassWord(string $passWord): self
+    {
+        $this->passWord = $passWord;
+
+        return $this;
+    }
+
+    public function getProfilId(): ?Profil
+    {
+        return $this->profilId;
+    }
+
+    public function setProfilId(Profil $profilId): self
+    {
+        $this->profilId = $profilId;
+
+        // set the owning side of the relation if necessary
+        if ($profilId->getUserId() !== $this) {
+            $profilId->setUserId($this);
+        }
 
         return $this;
     }
