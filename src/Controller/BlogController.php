@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BlogController extends AbstractController
 {
@@ -16,13 +17,13 @@ class BlogController extends AbstractController
             'controller_name' => 'BlogController',
         ]);
     }
-       /**
-     * @Route("/blog/home", name="home")
+    /**
+     * @Route("/", name="home")
      */
     public function home()
     {
         return $this->render('blog/home.html.twig', [
-            'controller_name' => 'BlogController',
+            'title' => 'Bienvenue sur le blog Symfony'
         ]);
     }
 }
