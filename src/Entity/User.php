@@ -20,10 +20,8 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $userName;
-
-
-   
+    private $username;
+ 
 
     /**
      * @ORM\Column(type="json")
@@ -45,7 +43,7 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $passWord;
+    private $password;
 
     /**
      * @ORM\OneToOne(targetEntity=Profil::class, mappedBy="userId", cascade={"persist", "remove"})
@@ -57,14 +55,14 @@ class User
         return $this->id;
     }
 
-    public function getuserName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->userName;
+        return $this->username;
     }
 
-    public function setuserName(string $userName): self
+    public function setUsername(string $username): self
     {
-        $this->userName = $userName;
+        $this->username = $username;
 
         return $this;
     }
@@ -108,14 +106,14 @@ class User
         return $this;
     }
 
-    public function getPassWord(): ?string
+    public function getPassword(): ?string
     {
-        return $this->passWord;
+        return $this->password;
     }
 
-    public function setPassWord(string $passWord): self
+    public function setPassword(string $password): self
     {
-        $this->passWord = $passWord;
+        $this->password = $password;
 
         return $this;
     }
@@ -135,5 +133,10 @@ class User
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->username;
     }
 }
