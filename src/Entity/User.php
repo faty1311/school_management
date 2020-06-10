@@ -18,7 +18,7 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
  
@@ -30,13 +30,13 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="userId")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $classId;
 
     /**
      * @ORM\ManyToOne(targetEntity=Exam::class, inversedBy="userId")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $examId;
 

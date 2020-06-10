@@ -20,9 +20,9 @@ class Classe
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="nameclass", type="string", length=255)
      */
-    private $nameClass;
+    private $nameclass;
 
     /**
      * @ORM\Column(type="integer")
@@ -49,14 +49,14 @@ class Classe
         return $this->id;
     }
 
-    public function getNameClass(): ?string
+    public function getNameclass(): ?string
     {
-        return $this->nameClass;
+        return $this->nameclass;
     }
 
-    public function setNameClass(string $nameClass): self
+    public function setNameclass(string $nameClass): self
     {
-        $this->nameClass = $nameClass;
+        $this->nameclass = $nameClass;
 
         return $this;
     }
@@ -114,5 +114,10 @@ class Classe
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nameclass;
     }
 }
