@@ -37,7 +37,7 @@ class Planning
     private $classId;
 
     /**
-     * @ORM\ManyToMany(targetEntity=subject::class)
+     * @ORM\ManyToMany(targetEntity=Subject::class)
      */
     private $subjectId;
 
