@@ -67,9 +67,6 @@ class User
         return $this;
     }
 
- 
-
-
     public function getRoles(): ?array
     {
         return $this->roles;
