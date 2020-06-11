@@ -4,14 +4,9 @@ easy_admin:
         - label: 'School management'
           icon: 'newspaper-o'
           children: 
-            - {entity: 'Profil', icon: 'folder-open', label: 'Elèves'}
-            - {entity: 'Profil', icon: 'folder-open', label: 'Professeurs'}
+            - {entity: 'User', icon: 'folder-open', label: 'Utilisateurs'}  
             - {entity: 'Classe', icon: 'folder-open', label: 'Classes'}          
             - {entity: 'Subject', icon: 'folder-open', label: 'Matières'}
             - {entity: 'Planning', icon: 'folder-open', label: 'Planning'}
             - {entity: 'News', icon: 'folder-open', label: 'Actualitées'}
-
-        - label: 'Accès'
-          icon: 'user'
-          children: 
-            - {entity: 'User', icon: 'folder-open', label: 'Utilisateurs'}            
+                     

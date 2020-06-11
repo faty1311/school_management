@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -21,35 +22,62 @@ class User
      * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
- 
-
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="userId")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $classId;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Exam::class, inversedBy="userId")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $examId;
-
-    /**
+    
+     /**
      * @ORM\Column(type="string", length=255)
      */
     private $password;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Profil::class, mappedBy="userId", cascade={"persist", "remove"})
+     /**
+     * @ORM\Column(type="string", length=60, unique=true)
      */
-    private $profilId;
+    private $email;
 
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $lastname;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $birthdate;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $function;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="users")
+     * @ORM\JoinColumn(name="class_id", referencedColumnName="id", nullable=true)
+     */
+    private $classe;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Exam::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $exam;
+    
+
+    public function __construct()
+    {
+        $this->isActive = true;
+        
+    }
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -67,42 +95,6 @@ class User
         return $this;
     }
 
-    public function getRoles(): ?array
-    {
-        return $this->roles;
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    public function getClassId(): ?Classe
-    {
-        return $this->classId;
-    }
-
-    public function setClassId(?Classe $classId): self
-    {
-        $this->classId = $classId;
-
-        return $this;
-    }
-
-    public function getExamId(): ?Exam
-    {
-        return $this->examId;
-    }
-
-    public function setExamId(?Exam $examId): self
-    {
-        $this->examId = $examId;
-
-        return $this;
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
@@ -115,19 +107,102 @@ class User
         return $this;
     }
 
-    public function getProfilId(): ?Profil
+    public function getSalt()
     {
-        return $this->profilId;
+        return null;
     }
 
-    public function setProfilId(Profil $profilId): self
+    public function getFirstname(): ?string
     {
-        $this->profilId = $profilId;
+        return $this->firstname;
+    }
 
-        // set the owning side of the relation if necessary
-        if ($profilId->getUserId() !== $this) {
-            $profilId->setUserId($this);
-        }
+    public function setFirstname(string $firstName): self
+    {
+        $this->firstname = $firstName;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastName): self
+    {
+        $this->lastname = $lastName;
+
+        return $this;
+    }
+
+    public function getBirthdate(): ?\DateTimeInterface
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(\DateTimeInterface $birthdate): self
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    public function getFunction(): ?string
+    {
+        return $this->function;
+    }
+
+    public function setFunction(string $function): self
+    {
+        $this->function = $function;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+
+    public function getRoles(): ?array
+    {
+        return array('ROLE_USER');
+    }
+    
+    
+    public function eraseCredentials()
+    {
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
+
+        return $this;
+    }
+
+    public function getExam(): ?Exam
+    {
+        return $this->exam;
+    }
+
+    public function setExam(?Exam $exam): self
+    {
+        $this->exam = $exam;
 
         return $this;
     }
@@ -136,4 +211,6 @@ class User
     {
         return $this->username;
     }
+
+
 }
