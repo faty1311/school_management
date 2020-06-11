@@ -28,12 +28,13 @@ class Lessons
      * @ORM\ManyToMany(targetEntity=User::class)
      */
     private $userId;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="lessons")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $subjectId;
+    private $subject;
 
     public function __construct()
     {
@@ -83,14 +84,14 @@ class Lessons
         return $this;
     }
 
-    public function getSubjectId(): ?Subject
+    public function getSubject(): ?Subject
     {
-        return $this->subjectId;
+        return $this->subject;
     }
 
-    public function setSubjectId(?Subject $subjectId): self
+    public function setSubject(?Subject $subject): self
     {
-        $this->subjectId = $subjectId;
+        $this->subject = $subject;
 
         return $this;
     }

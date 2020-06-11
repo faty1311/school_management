@@ -20,30 +20,32 @@ class Exam
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="exams")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $mark;
 
-    /**
-     * @ORM\Column(type="datetime")
+        /**
+     * @ORM\Column(type="date")
      */
     private $date;
 
-    /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="examId")
-     */
-    private $userId;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Subject::class, mappedBy="examId")
-     */
-    private $subjectId;
 
-    public function __construct()
-    {
-        $this->userId = new ArrayCollection();
-        $this->subjectId = new ArrayCollection();
-    }
+
+        /**
+     * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="exams")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $subject;
+
+  
+  
 
     public function getId(): ?int
     {
@@ -74,65 +76,29 @@ class Exam
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUserId(): Collection
+    public function getUser(): ?User
     {
-        return $this->userId;
+        return $this->user;
     }
 
-    public function addUserId(User $userId): self
+    public function setUser(?User $user): self
     {
-        if (!$this->userId->contains($userId)) {
-            $this->userId[] = $userId;
-            $userId->setExamId($this);
-        }
+        $this->user = $user;
 
         return $this;
     }
 
-    public function removeUserId(User $userId): self
+
+    public function getSubject(): ?Subject
     {
-        if ($this->userId->contains($userId)) {
-            $this->userId->removeElement($userId);
-            // set the owning side to null (unless already changed)
-            if ($userId->getExamId() === $this) {
-                $userId->setExamId(null);
-            }
-        }
+        return $this->subject;
+    }
+
+    public function setSubject(?Subject $subject): self
+    {
+        $this->subject = $subject;
 
         return $this;
     }
-
-    /**
-     * @return Collection|Subject[]
-     */
-    public function getSubjectId(): Collection
-    {
-        return $this->subjectId;
-    }
-
-    public function addSubjectId(Subject $subjectId): self
-    {
-        if (!$this->subjectId->contains($subjectId)) {
-            $this->subjectId[] = $subjectId;
-            $subjectId->setExamId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSubjectId(Subject $subjectId): self
-    {
-        if ($this->subjectId->contains($subjectId)) {
-            $this->subjectId->removeElement($subjectId);
-            // set the owning side to null (unless already changed)
-            if ($subjectId->getExamId() === $this) {
-                $subjectId->setExamId(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

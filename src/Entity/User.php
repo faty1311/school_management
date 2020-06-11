@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -39,13 +42,13 @@ class User implements UserInterface
     private $isActive;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255)
      */
     private $firstname;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+   /**
+     * @ORM\Column(name="lastname", type="string", length=255)
+    */
     private $lastname;
 
     /**
@@ -64,16 +67,21 @@ class User implements UserInterface
      */
     private $classe;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Exam::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=true)
+         /**
+     * @ORM\OneToMany(targetEntity=Exam::class, mappedBy="user")
      */
-    private $exam;
-    
+    private $exams; 
+
+             /**
+     * @ORM\OneToMany(targetEntity=Absence::class, mappedBy="user")
+     */
+    private $absences; 
+
 
     public function __construct()
     {
         $this->isActive = true;
+        $this->exams = new ArrayCollection();
         
     }
 
@@ -106,6 +114,7 @@ class User implements UserInterface
 
         return $this;
     }
+
 
     public function getSalt()
     {
@@ -195,17 +204,67 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getExam(): ?Exam
+      /**
+     * @return Collection|Exam[]
+     */
+    public function getExams(): Collection
     {
-        return $this->exam;
+        return $this->exams;
     }
 
-    public function setExam(?Exam $exam): self
+    public function addExams(Exam $exams): self
     {
-        $this->exam = $exam;
+        if (!$this->exams->contains($exams)) {
+            $this->exams[] = $exams;
+            $exams->setUser($this);
+        }
 
         return $this;
     }
+
+    public function removeExams(Exam $exams): self
+    {
+        if ($this->exams->contains($exams)) {
+            $this->exams->removeElement($exams);
+         
+            if ($exams->getUser() === $this) {
+                $exams->setUser(null);
+            }
+        }
+
+        return $this;
+    }  
+    
+      /**
+     * @return Collection|Absence[]
+     */
+    public function getAbsences(): Collection
+    {
+        return $this->absences;
+    }
+
+    public function addAbsences(Absence $absences): self
+    {
+        if (!$this->absences->contains($absences)) {
+            $this->absences[] = $absences;
+            $absences->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAbsences(Absence $absences): self
+    {
+        if ($this->absences->contains($absences)) {
+            $this->absences->removeElement($absences);
+         
+            if ($absences->getUser() === $this) {
+                $absences->setUser(null);
+            }
+        }
+
+        return $this;
+    }    
 
     public function __toString()
     {
