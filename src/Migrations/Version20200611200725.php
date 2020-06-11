@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200610211946 extends AbstractMigration
+final class Version20200611200725 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,9 @@ final class Version20200610211946 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE user CHANGE class_id_id class_id_id INT DEFAULT NULL, CHANGE roles roles JSON NOT NULL');
+        $this->addSql('ALTER TABLE planning DROP FOREIGN KEY FK_D499BFF69D86650F');
+        $this->addSql('DROP INDEX UNIQ_D499BFF69D86650F ON planning');
+        $this->addSql('ALTER TABLE planning DROP user_id_id');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +32,8 @@ final class Version20200610211946 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE user CHANGE class_id_id class_id_id INT NOT NULL, CHANGE roles roles LONGTEXT CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_bin`');
+        $this->addSql('ALTER TABLE planning ADD user_id_id INT NOT NULL');
+        $this->addSql('ALTER TABLE planning ADD CONSTRAINT FK_D499BFF69D86650F FOREIGN KEY (user_id_id) REFERENCES user (id)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_D499BFF69D86650F ON planning (user_id_id)');
     }
 }
