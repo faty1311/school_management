@@ -35,8 +35,11 @@ class Exam
      */
     private $date;
 
-
-
+    /**
+     * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="exams")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $subject;
 
   
   
