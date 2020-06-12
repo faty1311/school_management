@@ -24,7 +24,28 @@ class BlogController extends AbstractController
     {
 
         return $this->render('blog/home.html.twig', [
-            'title' => 'Bienvenue sur le blog Symfony'
+            'title' => 'Bienvenue sur la page d\'acceuil'
+        ]);
+    }
+    /**
+     * @Route("/presentation", name="presentation")
+     */
+    public function presentation()
+    {
+
+        return $this->render('blog/presentation.html.twig', [
+            'title' => 'Bienvenue sur le page de presentation'
+        ]);
+    }
+
+    /**
+     * @Route("/reglement", name="reglement")
+     */
+    public function reglement()
+    {
+
+        return $this->render('blog/reglement.html.twig', [
+            'title' => 'Bienvenue sur le page de reglement'
         ]);
     }
 }

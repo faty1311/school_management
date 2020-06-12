@@ -24,14 +24,10 @@ class Subject
      */
     private $name;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Exam::class, inversedBy="subjectId")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $examId;
+
 
     /**
-     * @ORM\OneToMany(targetEntity=Lessons::class, mappedBy="subjectId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Lessons::class, mappedBy="subject", orphanRemoval=true)
      */
     private $lessons;
 
@@ -42,10 +38,32 @@ class Subject
      */
     private $coefficient;
 
+
+      /**
+     * @ORM\OneToMany(targetEntity=Exam::class, mappedBy="subject")
+     */
+    private $exams;
+
+          /**
+     * @ORM\OneToMany(targetEntity=Absence::class, mappedBy="subject")
+     */
+    private $absences;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PlanningSubject::class, mappedBy="subject")
+     */
+    private $planningSubjects;
+
+  
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
+        $this->exams = new ArrayCollection();
+        $this->planningSubjects = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {
@@ -64,14 +82,64 @@ class Subject
         return $this;
     }
 
-    public function getExamId(): ?Exam
+     /**
+     * @return Collection|Exam[]
+     */
+    public function getExams(): Collection
     {
-        return $this->examId;
+        return $this->exams;
     }
 
-    public function setExamId(?Exam $examId): self
+    public function addExams(Exam $exams): self
     {
-        $this->examId = $examId;
+        if (!$this->exams->contains($exams)) {
+            $this->exams[] = $exams;
+            $exams->setSubject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExams(Exam $exams): self
+    {
+        if ($this->exams->contains($exams)) {
+            $this->exams->removeElement($exams);
+         
+            if ($exams->getSubject() === $this) {
+                $exams->setSubject(null);
+            }
+        }
+
+        return $this;
+    }
+ 
+        /**
+     * @return Collection|Absence[]
+     */
+    public function getAbsences(): Collection
+    {
+        return $this->absences;
+    }
+
+    public function addAbsences(Absence $absences): self
+    {
+        if (!$this->absences->contains($absences)) {
+            $this->absences[] = $absences;
+            $absences->setSubject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAbsences(Absence $absences): self
+    {
+        if ($this->absences->contains($absences)) {
+            $this->absences->removeElement($absences);
+         
+            if ($absences->getSubject() === $this) {
+                $absences->setSubject(null);
+            }
+        }
 
         return $this;
     }
@@ -88,7 +156,7 @@ class Subject
     {
         if (!$this->lessons->contains($lesson)) {
             $this->lessons[] = $lesson;
-            $lesson->setSubjectId($this);
+            $lesson->setSubject($this);
         }
 
         return $this;
@@ -98,9 +166,9 @@ class Subject
     {
         if ($this->lessons->contains($lesson)) {
             $this->lessons->removeElement($lesson);
-            // set the owning side to null (unless already changed)
-            if ($lesson->getSubjectId() === $this) {
-                $lesson->setSubjectId(null);
+ 
+            if ($lesson->getSubject() === $this) {
+                $lesson->setSubject(null);
             }
         }
 
@@ -117,6 +185,37 @@ class Subject
     public function setCoefficient(int $coefficient): self
     {
         $this->coefficient = $coefficient;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PlanningSubject[]
+     */
+    public function getPlanningSubjects(): Collection
+    {
+        return $this->planningSubjects;
+    }
+
+    public function addPlanningSubject(PlanningSubject $planningSubject): self
+    {
+        if (!$this->planningSubjects->contains($planningSubject)) {
+            $this->planningSubjects[] = $planningSubject;
+            $planningSubject->setSubject($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanningSubject(PlanningSubject $planningSubject): self
+    {
+        if ($this->planningSubjects->contains($planningSubject)) {
+            $this->planningSubjects->removeElement($planningSubject);
+            // set the owning side to null (unless already changed)
+            if ($planningSubject->getSubject() === $this) {
+                $planningSubject->setSubject(null);
+            }
+        }
 
         return $this;
     }
