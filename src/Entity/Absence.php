@@ -31,16 +31,16 @@ class Absence
     private $date;
 
         /**
-     * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="absences")
+     * @ORM\ManyToOne(targetEntity=PlanningSubject::class, inversedBy="absences")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $subject;    
+    private $planningSubjects;    
     
 
     public function __construct()
     {
-        $this->userId = new ArrayCollection();
-        $this->subjectId = new ArrayCollection();
+        $this->user = new ArrayCollection();
+        $this->planningSubjects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -72,14 +72,14 @@ class Absence
         return $this;
     }
 
-    public function getSubject(): ?Subject
+    public function getPlanningSubjects(): ?PlanningSubject
     {
-        return $this->subject;
+        return $this->planningSubjects;
     }
 
-    public function setSubject(?Subject $subject): self
+    public function setPlanningSubjects(?PlanningSubject $planningSubjects): self
     {
-        $this->subject = $subject;
+        $this->subject = $planningSubjects;
 
         return $this;
     }

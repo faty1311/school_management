@@ -46,10 +46,7 @@ class Subject
      */
     private $exams;
 
-          /**
-     * @ORM\OneToMany(targetEntity=Absence::class, mappedBy="subject")
-     */
-    private $absences;
+
 
     /**
      * @ORM\OneToMany(targetEntity=PlanningSubject::class, mappedBy="subject")
@@ -120,37 +117,7 @@ class Subject
         return $this;
     }
  
-        /**
-     * @return Collection|Absence[]
-     */
-    public function getAbsences(): Collection
-    {
-        return $this->absences;
-    }
 
-    public function addAbsences(Absence $absences): self
-    {
-        if (!$this->absences->contains($absences)) {
-            $this->absences[] = $absences;
-            $absences->setSubject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAbsences(Absence $absences): self
-    {
-        if ($this->absences->contains($absences)) {
-            $this->absences->removeElement($absences);
-         
-            if ($absences->getSubject() === $this) {
-                $absences->setSubject(null);
-            }
-        }
-
-        return $this;
-
-    }
 
     /**
      * @return Collection|Lessons[]
