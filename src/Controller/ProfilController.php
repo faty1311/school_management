@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Exam;
-use App\Entity\Profil;
+use App\Entity\Lessons;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,7 +18,7 @@ class ProfilController extends AbstractController
     public function index($id)
     {
         return $this->render('profil/Mon_Espace.html.twig', [
-            'profile' => $this->getDoctrine()->getRepository(Profil::class)->find($id),
+            'profile' => $this->getDoctrine()->getRepository(User::class)->find($id),
         ]);
     }
 
@@ -38,6 +39,19 @@ class ProfilController extends AbstractController
 
         return $this->render('profil/emploie.html.twig', [
             'exam' => $this->getDoctrine()->getRepository(Exam::class)->findResult()
+
+        ]);
+    }
+
+    /**
+     * @Route("/preparation", name="preparation")
+     */
+    public function MaPreparation()
+    {
+
+
+        return $this->render('profil/prepar.html.twig', [
+            'prepar' => $this->getDoctrine()->getRepository(Lessons::class)->findPrepar()
 
         ]);
     }

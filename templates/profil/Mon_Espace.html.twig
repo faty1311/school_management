@@ -7,13 +7,10 @@
         <div class="card-body">
             <h1 class="card-title pricing-card-title">Mon Profil</h1>
             <ul class="list-unstyled mt-3 mb-4">
-                <li>Nom: {{ profile.firstName }}</li>
-                <li>Prénom: {{ profile.lastName }} </li>
+                <li>Nom: {{ profile.firstname }}</li>
+                <li>Prénom: {{ profile.lastname }} </li>
                 <li>Date D'anniversaire: {{ profile.birthdate |date('Y-m-d') }}</li>
                 <li>Function: {{ profile.function }}</li>
-                <li><a href="{{ path('calendrier') }}" class="
-"> Emploi du Temps </a></li>
-                <li><a href="#">Mes Notes</a></li>
 
             </ul>
         </div>

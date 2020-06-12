@@ -47,4 +47,11 @@ class LessonsRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findPrepar()
+    {
+        return $this->createQueryBuilder('l')
+            ->join('l.subject_id', 's')->addSelect('s')
+            ->getQuery()
+            ->getResult();
+    }
 }

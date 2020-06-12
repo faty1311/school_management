@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {% for newPrepar in prepar %}
+        <div>{{ newPrepar.name }}</div>
+        <div>{{ newPrepar.description }}</div>
+
+    {% endfor %}
+{% endblock %}
