@@ -38,12 +38,6 @@ class Exam
 
 
 
-        /**
-     * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="exams")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $subject;
-
   
   
 
@@ -89,6 +83,7 @@ class Exam
     }
 
 
+
     public function getSubject(): ?Subject
     {
         return $this->subject;
@@ -102,3 +97,4 @@ class Exam
     }
    
 }
+

@@ -31,12 +31,14 @@ class Subject
      */
     private $lessons;
 
-   
 
     /**
      * @ORM\Column(type="integer")
      */
     private $coefficient;
+
+
+
 
 
       /**
@@ -56,11 +58,13 @@ class Subject
 
   
 
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
         $this->exams = new ArrayCollection();
-        $this->planningSubjects = new ArrayCollection();
+
+
     }
 
 
@@ -82,6 +86,7 @@ class Subject
         return $this;
     }
 
+
      /**
      * @return Collection|Exam[]
      */
@@ -91,6 +96,7 @@ class Subject
     }
 
     public function addExams(Exam $exams): self
+
     {
         if (!$this->exams->contains($exams)) {
             $this->exams[] = $exams;
@@ -99,6 +105,7 @@ class Subject
 
         return $this;
     }
+
 
     public function removeExams(Exam $exams): self
     {
@@ -142,6 +149,7 @@ class Subject
         }
 
         return $this;
+
     }
 
     /**
@@ -175,7 +183,6 @@ class Subject
         return $this;
     }
 
-    
 
     public function getCoefficient(): ?int
     {
@@ -188,6 +195,7 @@ class Subject
 
         return $this;
     }
+
 
     /**
      * @return Collection|PlanningSubject[]
@@ -202,10 +210,12 @@ class Subject
         if (!$this->planningSubjects->contains($planningSubject)) {
             $this->planningSubjects[] = $planningSubject;
             $planningSubject->setSubject($this);
+
         }
 
         return $this;
     }
+
 
     public function removePlanningSubject(PlanningSubject $planningSubject): self
     {
@@ -214,6 +224,7 @@ class Subject
             // set the owning side to null (unless already changed)
             if ($planningSubject->getSubject() === $this) {
                 $planningSubject->setSubject(null);
+
             }
         }
 

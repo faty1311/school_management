@@ -29,12 +29,14 @@ class User implements UserInterface
      /**
      * @ORM\Column(type="string", length=255)
      */
+
     private $password;
 
      /**
      * @ORM\Column(type="string", length=60, unique=true)
      */
     private $email;
+
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
@@ -59,7 +61,9 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
+
     private $function;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="users")
@@ -145,7 +149,9 @@ class User implements UserInterface
         return $this;
     }
 
+
     public function getBirthdate(): ?\DateTimeInterface
+
     {
         return $this->birthdate;
     }
@@ -157,6 +163,7 @@ class User implements UserInterface
         return $this;
     }
 
+
     public function getFunction(): ?string
     {
         return $this->function;
@@ -165,6 +172,7 @@ class User implements UserInterface
     public function setFunction(string $function): self
     {
         $this->function = $function;
+
 
         return $this;
     }
@@ -266,10 +274,11 @@ class User implements UserInterface
         return $this;
     }    
 
+   
+
     public function __toString()
     {
         return $this->username;
     }
-
 
 }
