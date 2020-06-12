@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {% for newExam in exam %}
+        <div>{{ newExam.name }}</div>
+        <div>{{ newExam.mark }}</div>
+        <div>{{ newExam.date |date('Y-m-d') }}</div>
+
+    {% endfor %}
+{% endblock %}

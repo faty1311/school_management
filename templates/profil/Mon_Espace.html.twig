@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="card mb-4 box-shadow col-md-6">
+
+        <div class="card-body">
+            <h1 class="card-title pricing-card-title">Mon Profil</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+                <li>Nom: {{ profile.firstName }}</li>
+                <li>Prénom: {{ profile.lastName }} </li>
+                <li>Date D'anniversaire: {{ profile.birthdate |date('Y-m-d') }}</li>
+                <li>Function: {{ profile.function }}</li>
+                <li><a href="{{ path('calendrier') }}" class="
+"> Emploi du Temps </a></li>
+                <li><a href="#">Mes Notes</a></li>
+
+            </ul>
+        </div>
+    </div>
+{% endblock %}

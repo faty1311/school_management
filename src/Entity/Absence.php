@@ -19,25 +19,23 @@ class Absence
      */
     private $id;
 
+        /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="absences")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     /**
      * @ORM\Column(type="date")
      */
     private $date;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class)
+        /**
+     * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="absences")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $userId;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Subject::class)
-     */
-    private $subjectId;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $attend;
+    private $subject;    
+    
 
     public function __construct()
     {
@@ -62,67 +60,29 @@ class Absence
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUserId(): Collection
+    public function getUser(): ?User
     {
-        return $this->userId;
+        return $this->user;
     }
 
-    public function addUserId(User $userId): self
+    public function setUser(?User $user): self
     {
-        if (!$this->userId->contains($userId)) {
-            $this->userId[] = $userId;
-        }
+        $this->user = $user;
 
         return $this;
     }
 
-    public function removeUserId(User $userId): self
+    public function getSubject(): ?Subject
     {
-        if ($this->userId->contains($userId)) {
-            $this->userId->removeElement($userId);
-        }
+        return $this->subject;
+    }
+
+    public function setSubject(?Subject $subject): self
+    {
+        $this->subject = $subject;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Subject[]
-     */
-    public function getSubjectId(): Collection
-    {
-        return $this->subjectId;
-    }
 
-    public function addSubjectId(Subject $subjectId): self
-    {
-        if (!$this->subjectId->contains($subjectId)) {
-            $this->subjectId[] = $subjectId;
-        }
-
-        return $this;
-    }
-
-    public function removeSubjectId(Subject $subjectId): self
-    {
-        if ($this->subjectId->contains($subjectId)) {
-            $this->subjectId->removeElement($subjectId);
-        }
-
-        return $this;
-    }
-
-    public function getAttend(): ?bool
-    {
-        return $this->attend;
-    }
-
-    public function setAttend(bool $attend): self
-    {
-        $this->attend = $attend;
-
-        return $this;
-    }
 }

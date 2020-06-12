@@ -20,9 +20,9 @@ class Classe
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="nameclass", type="string")
      */
-    private $nameClass;
+    private $nameclass;
 
     /**
      * @ORM\Column(type="integer")
@@ -35,13 +35,13 @@ class Classe
     private $number;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="classId")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="classe")
      */
-    private $userId;
+    private $users;
 
     public function __construct()
     {
-        $this->userId = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -49,14 +49,14 @@ class Classe
         return $this->id;
     }
 
-    public function getNameClass(): ?string
+    public function getNameclass(): ?string
     {
-        return $this->nameClass;
+        return $this->nameclass;
     }
 
-    public function setNameClass(string $nameClass): self
+    public function setNameclass(string $nameClass): self
     {
-        $this->nameClass = $nameClass;
+        $this->nameclass = $nameClass;
 
         return $this;
     }
@@ -88,31 +88,36 @@ class Classe
     /**
      * @return Collection|User[]
      */
-    public function getUserId(): Collection
+    public function getUsers(): Collection
     {
-        return $this->userId;
+        return $this->users;
     }
 
-    public function addUserId(User $userId): self
+    public function addUsers(User $users): self
     {
-        if (!$this->userId->contains($userId)) {
-            $this->userId[] = $userId;
-            $userId->setClassId($this);
+        if (!$this->users->contains($users)) {
+            $this->users[] = $users;
+            $users->setClasse($this);
         }
 
         return $this;
     }
 
-    public function removeUserId(User $userId): self
+    public function removeUsers(User $users): self
     {
-        if ($this->userId->contains($userId)) {
-            $this->userId->removeElement($userId);
+        if ($this->users->contains($users)) {
+            $this->users->removeElement($users);
             // set the owning side to null (unless already changed)
-            if ($userId->getClassId() === $this) {
-                $userId->setClassId(null);
+            if ($users->getClasse() === $this) {
+                $users->setClasse(null);
             }
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nameclass;
     }
 }
