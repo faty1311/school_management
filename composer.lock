@@ -1924,14 +1924,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BabDev/Pagerfanta.git",
-
-                "reference": "a53ff01d521648d9dbca19b93ac6bc75a59b0972"
+                "reference": "fd00eb74632fecc0265327e9fe0eddc08c72b238"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BabDev/Pagerfanta/zipball/a53ff01d521648d9dbca19b93ac6bc75a59b0972",
-                "reference": "a53ff01d521648d9dbca19b93ac6bc75a59b0972",
-
+                "url": "https://api.github.com/repos/BabDev/Pagerfanta/zipball/fd00eb74632fecc0265327e9fe0eddc08c72b238",
+                "reference": "fd00eb74632fecc0265327e9fe0eddc08c72b238",
                 "shasum": ""
             },
             "require": {
@@ -1983,7 +1981,6 @@
                 "paginator",
                 "paging"
             ],
-
             "funding": [
                 {
                     "url": "https://github.com/mbabker",
@@ -1991,7 +1988,6 @@
                 }
             ],
             "time": "2020-06-09T15:25:12+00:00"
-
         },
         {
             "name": "phpdocumentor/reflection-common",
