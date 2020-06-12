@@ -35,9 +35,16 @@ class Exam
     private $userId;
 
     /**
-     * @ORM\OneToMany(targetEntity=Subject::class, mappedBy="examId")
+     * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="exams")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $subjectId;
+    private $subjects;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity=Subject::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
 
     public function __construct()
     {
@@ -106,33 +113,22 @@ class Exam
     }
 
     /**
-     * @return Collection|Subject[]
+     * @return Subject|null
      */
-    public function getSubjectId(): Collection
+    public function getSubjects(): ?Subject
     {
-        return $this->subjectId;
+        return $this->subjects;
     }
 
-    public function addSubjectId(Subject $subjectId): self
+    /**
+     * @param Subject|null $subjects
+     * @return $this
+     */
+    public function setSubjects(?Subject $subjects): self
     {
-        if (!$this->subjectId->contains($subjectId)) {
-            $this->subjectId[] = $subjectId;
-            $subjectId->setExamId($this);
-        }
+        $this->subjects = $subjects;
 
         return $this;
     }
 
-    public function removeSubjectId(Subject $subjectId): self
-    {
-        if ($this->subjectId->contains($subjectId)) {
-            $this->subjectId->removeElement($subjectId);
-            // set the owning side to null (unless already changed)
-            if ($subjectId->getExamId() === $this) {
-                $subjectId->setExamId(null);
-            }
-        }
-
-        return $this;
-    }
 }

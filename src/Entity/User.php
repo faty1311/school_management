@@ -21,9 +21,7 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $username;
-
-
-   
+ 
 
     /**
      * @ORM\Column(type="json")
@@ -57,12 +55,12 @@ class User
         return $this->id;
     }
 
-    public function getUserName(): ?string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    public function setuserName(string $userName): self
+    public function setUsername(string $username): self
     {
         $this->username = $username;
 
@@ -96,7 +94,7 @@ class User
         return $this;
     }
 
-    public function getExamId(): ?Exam
+    public function getExamId()
     {
         return $this->examId;
     }
@@ -108,14 +106,14 @@ class User
         return $this;
     }
 
-    public function getPassWord(): ?string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassWord(string $passWord): self
+    public function setPassword(string $password): self
     {
-        $this->passWord = $password;
+        $this->password = $password;
 
         return $this;
     }
@@ -136,9 +134,9 @@ class User
 
         return $this;
     }
+
     public function __toString()
     {
         return $this->username;
     }
-    
 }

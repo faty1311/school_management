@@ -35,16 +35,21 @@ class Subject
      */
     private $lessons;
 
-   
 
     /**
      * @ORM\Column(type="integer")
      */
     private $coefficient;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Exam::class, mappedBy="subjects", orphanRemoval=true)
+     */
+    private $exams;
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
+        $this->exams = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,16 +69,20 @@ class Subject
         return $this;
     }
 
-    public function getExamId(): ?Exam
+    /**
+     * @return mixed
+     */
+    public function getExamId()
     {
         return $this->examId;
     }
 
-    public function setExamId(?Exam $examId): self
+    /**
+     * @param mixed $examId
+     */
+    public function setExamId($examId): void
     {
         $this->examId = $examId;
-
-        return $this;
     }
 
     /**
@@ -107,7 +116,6 @@ class Subject
         return $this;
     }
 
-    
 
     public function getCoefficient(): ?int
     {
@@ -117,6 +125,42 @@ class Subject
     public function setCoefficient(int $coefficient): self
     {
         $this->coefficient = $coefficient;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return Collection|Exam[]
+     */
+    public function getExams(): Collection
+    {
+        return $this->exams;
+    }
+
+    public function addExam(Exam $exam): self
+    {
+        if (!$this->exams->contains($exam)) {
+            $this->exams[] = $exam;
+            $exam->setSubjects($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExam(Exam $exam): self
+    {
+        if ($this->exams->contains($exam)) {
+            $this->exams->removeElement($exam);
+            // set the owning side to null (unless already changed)
+            if ($exam->getSubjects() === $this) {
+                $exam->setSubjects(null);
+            }
+        }
 
         return $this;
     }
