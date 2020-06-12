@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlanningSubjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,11 @@ class PlanningSubject
      * @ORM\Column(type="datetime")
      */
     private $enddate;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Absence::class, mappedBy="planningSubjects")
+     */
+    private $absences;
 
     public function getId(): ?int
     {
@@ -89,4 +96,36 @@ class PlanningSubject
 
         return $this;
     }
+
+         /**
+     * @return Collection|Absence[]
+     */
+    public function getAbsences(): Collection
+    {
+        return $this->absences;
+    }
+
+    public function addAbsences(Absence $absences): self
+    {
+        if (!$this->absences->contains($absences)) {
+            $this->absences[] = $absences;
+            $absences->setPlanningSubjects($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAbsences(Absence $absences): self
+    {
+        if ($this->absences->contains($absences)) {
+            $this->absences->removeElement($absences);
+         
+            if ($absences->getPlanningSubjects() === $this) {
+                $absences->setPlanningSubjects(null);
+            }
+        }
+
+        return $this;
+
+    }   
 }
