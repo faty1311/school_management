@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Profil;
+use App\Entity\PlanningSubject;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Profil|null find($id, $lockMode = null, $lockVersion = null)
- * @method Profil|null findOneBy(array $criteria, array $orderBy = null)
- * @method Profil[]    findAll()
- * @method Profil[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PlanningSubject|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PlanningSubject|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PlanningSubject[]    findAll()
+ * @method PlanningSubject[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProfilRepository extends ServiceEntityRepository
+class PlanningSubjectRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Profil::class);
+        parent::__construct($registry, PlanningSubject::class);
     }
 
     // /**
-    //  * @return Profil[] Returns an array of Profil objects
+    //  * @return PlanningSubject[] Returns an array of PlanningSubject objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ProfilRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Profil
+    public function findOneBySomeField($value): ?PlanningSubject
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

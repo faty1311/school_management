@@ -20,30 +20,28 @@ class Planning
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string")
      */
-    private $date;
+    private $title;
 
-    /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $userId;
 
     /**
      * @ORM\OneToOne(targetEntity=Classe::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $classId;
+    private $class;
 
     /**
-     * @ORM\ManyToMany(targetEntity=subject::class)
+     * @ORM\OneToMany(targetEntity=PlanningSubject::class, mappedBy="planning")
      */
-    private $subjectId;
+    private $planningSubjects;
+
+
 
     public function __construct()
     {
         $this->subjectId = new ArrayCollection();
+        $this->planningSubjects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,65 +49,62 @@ class Planning
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getTitle(): ?string
     {
-        return $this->date;
+        return $this->title;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setTitle(string $title): self
     {
-        $this->date = $date;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getUserId(): ?User
+
+
+    public function getClass(): ?Classe
     {
-        return $this->userId;
+        return $this->class;
     }
 
-    public function setUserId(User $userId): self
+    public function setClass(Classe $class): self
     {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    public function getClassId(): ?Classe
-    {
-        return $this->classId;
-    }
-
-    public function setClassId(Classe $classId): self
-    {
-        $this->classId = $classId;
+        $this->class = $class;
 
         return $this;
     }
 
     /**
-     * @return Collection|subject[]
+     * @return Collection|PlanningSubject[]
      */
-    public function getSubjectId(): Collection
+    public function getPlanningSubjects(): Collection
     {
-        return $this->subjectId;
+        return $this->planningSubjects;
     }
 
-    public function addSubjectId(subject $subjectId): self
+    public function addPlanningSubject(PlanningSubject $planningSubject): self
     {
-        if (!$this->subjectId->contains($subjectId)) {
-            $this->subjectId[] = $subjectId;
+        if (!$this->planningSubjects->contains($planningSubject)) {
+            $this->planningSubjects[] = $planningSubject;
+            $planningSubject->setPlanning($this);
         }
 
         return $this;
     }
 
-    public function removeSubjectId(subject $subjectId): self
+    public function removePlanningSubject(PlanningSubject $planningSubject): self
     {
-        if ($this->subjectId->contains($subjectId)) {
-            $this->subjectId->removeElement($subjectId);
+        if ($this->planningSubjects->contains($planningSubject)) {
+            $this->planningSubjects->removeElement($planningSubject);
+            // set the owning side to null (unless already changed)
+            if ($planningSubject->getPlanning() === $this) {
+                $planningSubject->setPlanning(null);
+            }
         }
 
         return $this;
     }
+
+  
 }

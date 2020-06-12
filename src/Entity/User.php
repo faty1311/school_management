@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -18,38 +22,74 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
- 
+    
+     /**
+     * @ORM\Column(type="string", length=255)
+     */
+
+    private $password;
+
+     /**
+     * @ORM\Column(type="string", length=60, unique=true)
+     */
+    private $email;
+
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(name="is_active", type="boolean")
      */
-    private $roles = [];
+    private $isActive;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="userId")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(name="firstname", type="string", length=255)
      */
-    private $classId;
+    private $firstname;
+
+   /**
+     * @ORM\Column(name="lastname", type="string", length=255)
+    */
+    private $lastname;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Exam::class, inversedBy="userId")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="date")
      */
-    private $examId;
+    private $birthdate;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $password;
+
+    private $function;
+
 
     /**
-     * @ORM\OneToOne(targetEntity=Profil::class, mappedBy="userId", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="users")
+     * @ORM\JoinColumn(name="class_id", referencedColumnName="id", nullable=true)
      */
-    private $profilId;
+    private $classe;
 
+         /**
+     * @ORM\OneToMany(targetEntity=Exam::class, mappedBy="user")
+     */
+    private $exams; 
+
+             /**
+     * @ORM\OneToMany(targetEntity=Absence::class, mappedBy="user")
+     */
+    private $absences; 
+
+
+    public function __construct()
+    {
+        $this->isActive = true;
+        $this->exams = new ArrayCollection();
+        
+    }
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -67,45 +107,6 @@ class User
         return $this;
     }
 
- 
-
-
-    public function getRoles(): ?array
-    {
-        return $this->roles;
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    public function getClassId(): ?Classe
-    {
-        return $this->classId;
-    }
-
-    public function setClassId(?Classe $classId): self
-    {
-        $this->classId = $classId;
-
-        return $this;
-    }
-
-    public function getExamId()
-    {
-        return $this->examId;
-    }
-
-    public function setExamId(?Exam $examId): self
-    {
-        $this->examId = $examId;
-
-        return $this;
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
@@ -118,25 +119,166 @@ class User
         return $this;
     }
 
-    public function getProfilId(): ?Profil
+
+    public function getSalt()
     {
-        return $this->profilId;
+        return null;
     }
 
-    public function setProfilId(Profil $profilId): self
+    public function getFirstname(): ?string
     {
-        $this->profilId = $profilId;
+        return $this->firstname;
+    }
 
-        // set the owning side of the relation if necessary
-        if ($profilId->getUserId() !== $this) {
-            $profilId->setUserId($this);
+    public function setFirstname(string $firstName): self
+    {
+        $this->firstname = $firstName;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastName): self
+    {
+        $this->lastname = $lastName;
+
+        return $this;
+    }
+
+
+    public function getBirthdate(): ?\DateTimeInterface
+
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(\DateTimeInterface $birthdate): self
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+
+    public function getFunction(): ?string
+    {
+        return $this->function;
+    }
+
+    public function setFunction(string $function): self
+    {
+        $this->function = $function;
+
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+
+    public function getRoles(): ?array
+    {
+        return array('ROLE_USER');
+    }
+    
+    
+    public function eraseCredentials()
+    {
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
+
+        return $this;
+    }
+
+      /**
+     * @return Collection|Exam[]
+     */
+    public function getExams(): Collection
+    {
+        return $this->exams;
+    }
+
+    public function addExams(Exam $exams): self
+    {
+        if (!$this->exams->contains($exams)) {
+            $this->exams[] = $exams;
+            $exams->setUser($this);
         }
 
         return $this;
     }
 
+    public function removeExams(Exam $exams): self
+    {
+        if ($this->exams->contains($exams)) {
+            $this->exams->removeElement($exams);
+         
+            if ($exams->getUser() === $this) {
+                $exams->setUser(null);
+            }
+        }
+
+        return $this;
+    }  
+    
+      /**
+     * @return Collection|Absence[]
+     */
+    public function getAbsences(): Collection
+    {
+        return $this->absences;
+    }
+
+    public function addAbsences(Absence $absences): self
+    {
+        if (!$this->absences->contains($absences)) {
+            $this->absences[] = $absences;
+            $absences->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAbsences(Absence $absences): self
+    {
+        if ($this->absences->contains($absences)) {
+            $this->absences->removeElement($absences);
+         
+            if ($absences->getUser() === $this) {
+                $absences->setUser(null);
+            }
+        }
+
+        return $this;
+    }    
+
+   
+
     public function __toString()
     {
         return $this->username;
     }
+
 }
