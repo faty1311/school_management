@@ -48,4 +48,16 @@ class BlogController extends AbstractController
             'title' => 'Bienvenue sur le page de reglement'
         ]);
     }
+
+
+    /**
+     * @Route("/ecole", name="ecole")
+     */
+    public function ecole()
+    {
+
+        return $this->render('blog/ecole.html.twig', [
+            'title' => 'Bienvenue sur le page de l\'ecole'
+        ]);
+    }
 }
