@@ -20,9 +20,17 @@
                   <thead>                  
                     <tr>
                       <th style="width: 10px">#</th>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th style="width: 40px">Function</th>
+                      <th>NomUtilisateur</th>
+                      {# <th>Mot de passe</th> #}
+                      <th>Email</th>
+                      <th>Prènom</th>
+                      <th>Nom</th>
+                      <th>Date de naissance</th>
+                      <th>Fonction</th>
+                      <th>Classe</th>
+                      <th colspan="2">Action</th>
+                      
+
                     </tr>
                   </thead>
                    <tbody>
@@ -30,10 +38,20 @@
                         
                           <tr>
                             <th scope="row">{{ user.id }}</th>
+                            <td>{{ user.username }}</td>
+                            {# <td>{{ user.password }}</td> #}
+                            <td>{{ user.email }}</td>
                             <td>{{ user.firstname }}</td>
                             <td>{{ user.lastname }}</td>
+                            <td>{{ user.birthdate |date('Y-m-d') }}</td>
                             <td>{{ user.function }}</td>
+                            <td>{{ user.classe }}</td>
+                            <td><a href="{{ path('user_edit', {'id' : user.id }) }}"
+                              class='text-primary'> <i class="fas fa-edit"></i></a></td>                            
+                            <td><a href="{{ path('user_remove', {'id' : user.id }) }}"  class='text-primary'>
+                            <i class="fas fa-trash-alt" style='color:red'></i></a></td>
                           </tr>
+                          
                           {% endfor %}
                         </tbody>
                 </table>

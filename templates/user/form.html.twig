@@ -1,7 +1,7 @@
 {% extends 'backoffice/base.html.twig' %}
 {% block page_title %} Gestion d'utilisteurs {% endblock %}
 {% block fil_ariane %} 
-<li class="breadcrumb-item active">Ajputer utilisateur</li>
+<li class="breadcrumb-item active">Ajouter utilisateur</li>
 {% endblock %}
 
 {% block body %}
@@ -10,7 +10,14 @@
             <!-- general form elements -->
             <div class="card card-secondary">
               <div class="card-header">
-                <h3 class="card-title">Quick Example</h3>
+                {# <h3 class="card-title">Ajout d'un utilisateur</h3> #}
+                    <h3 class="card-title">
+                        {% if editMode %}
+                            Modification d'un utilisateur
+                        {% else %}
+                            Ajout d'un utilisateur
+                        {% endif %}
+                    </h3>
               </div>
             
             
@@ -18,51 +25,54 @@
                 {{ form_start(form) }}
                 <div class="card-body">
                     <div class="form-group">
-                        {{ form_row(form.username, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                        {{ form_row(form.username, {'label': 'NomUtilisateur', 'attr': {'placeholder': 'Saisir le NomUtilisateur...'}}) }}
                      </div>
 
                       <div class="form-group">
-                        {{ form_row(form.password, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                        {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'placeholder': 'Saisir le mot de passe...'}}) }}
                      </div>
 
                       <div class="form-group">
-                        {{ form_row(form.firstname, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                        {{ form_row(form.email, {'label': 'Email', 'attr': {'placeholder': 'Saisir l\'\email...'}}) }}
+                     </div>
+
+                    <div class="form-group">
+                        {{ form_row(form.firstname, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir le prénom...'}}) }}
                      </div>
 
                       <div class="form-group">
-                        {{ form_row(form.lastname, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                        {{ form_row(form.lastname, {'label': 'Nom', 'attr': {'placeholder': 'Saisir le nom...'}}) }}
+                     </div>                    
+
+                      <div class="form-group">
+                        {{ form_row(form.birthdate, {'label': 'Date de naissance', 'attr': {'placeholder': 'Saisir la date de naissance...'}}) }}
                      </div>
 
                       <div class="form-group">
-                        {{ form_row(form.email, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                        {{ form_row(form.function, {'label': 'Fonction', 'attr': {'placeholder': 'Saisir la fonction...'}}) }}
                      </div>
 
                       <div class="form-group">
-                        {{ form_row(form.birthdate, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                        {{ form_row(form.classe, {'label': 'Classe', 'attr': {'placeholder': 'Saisir la classe..'}}) }}
                      </div>
 
-                      <div class="form-group">
-                        {{ form_row(form.function, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
-                     </div>
-
-                      <div class="form-group">
-                        {{ form_row(form.classe, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
-                     </div>
                 </div>
                 
             </div>
             <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Envoyer</button>
+                  {# <button type="submit" class="btn btn-primary">Envoyer</button> #}
+                   <button type="submit" class="btn btn-primary">
+                        {% if editMode %}
+                            Enregistrer les modifications
+                        {% else %}
+                            Ajouter l'utilisateur
+                        {% endif %}
+                    </button>
              </div>
             </div>
             {{ form_end(form) }}  
          </div>     
 
   
-        
-
-    
-        
-
 
 {% endblock %}
