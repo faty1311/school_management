@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center mt-3">User</h1><hr>  
+
+    <div class="col-md-7 mx-auto">
+        {{ form_start(form) }}
+
+            {{ form_row(form.username, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+
+            {{ form_row(form.password, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+
+            {{ form_row(form.firstname, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+
+            {{ form_row(form.lastname, {'label': 'Nom', 'attr': {'placeholder': 'Saisir votre nom...'}}) }}
+
+            {{ form_row(form.email, {'label': 'Téléphone', 'attr': {'placeholder': 'Saisir votre numéro de téléphone...'}}) }}
+
+            {{ form_row(form.birthdate, {'label': 'Email', 'attr': {'placeholder': 'Saisir votre adresse email...'}}) }}
+
+            {{ form_row(form.function, {'label': 'Message', 'attr': {'placeholder': 'Saisir votre message...'}}) }}
+
+            {{ form_row(form.classe, {'label': 'Message', 'attr': {'placeholder': 'Saisir votre message...'}}) }}
+
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
