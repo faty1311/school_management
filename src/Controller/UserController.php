@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user_list")
+     * @Route("admin/user", name="user_list")
      */
     public function list(){
         $user = $this->getDoctrine()
@@ -25,7 +25,7 @@ class UserController extends AbstractController
     } 
 
     /**
-     * @Route("/user/add", name="user_add")
+     * @Route("admin/user/add", name="user_add")
      */
     public function new(Request $request)
     {
@@ -50,7 +50,70 @@ class UserController extends AbstractController
 
         return $this->render('user/form.html.twig', [
             'form' => $form->createView(),
+            'editMode' => $user->getId() !== null
         ]);
+    }
+
+
+    /**
+     * @Route("admin/user/edit/{id}", name="user_edit")
+     */
+    public function update($id, Request $request)
+    {
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(User::class)->find($id);
+
+        $form = $this->createForm(UserType::class, $user);
+        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+           $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+    
+            return $this->redirectToRoute('user_list');
+        } 
+
+       return $this->render('user/form.html.twig', [
+        'form' => $form->createView(),
+        'editMode' => $user->getId() !== null
+    ]);
+    
+    }
+
+
+        /**
+     * @Route("admin/user/remove/{id}", name="user_remove")
+     */
+    public function remove($id, Request $request)
+    {
+
+      
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(User::class)->find($id);
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+    //     $form = $this->createForm(UserType::class, $user);
+        
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+            
+    //        $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->flush();
+    
+           return $this->redirectToRoute('user_list');
+    //     } 
+
+    //    return $this->render('user/form.html.twig', [
+    //     'form' => $form->createView(),
+    //     'editMode' => $user->getId() !== null
+    //    ]);
+    
     }
 
    

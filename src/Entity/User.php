@@ -279,6 +279,7 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->username;
+        return $this->birthdate;
     }
 
 }
