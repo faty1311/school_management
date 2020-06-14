@@ -1,30 +1,68 @@
-{% extends 'base.html.twig' %}
+{% extends 'backoffice/base.html.twig' %}
+{% block page_title %} Gestion d'utilisteurs {% endblock %}
+{% block fil_ariane %} 
+<li class="breadcrumb-item active">Ajputer utilisateur</li>
+{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-3">User</h1><hr>  
 
-    <div class="col-md-7 mx-auto">
-        {{ form_start(form) }}
+         <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-secondary">
+              <div class="card-header">
+                <h3 class="card-title">Quick Example</h3>
+              </div>
+            
+            
+            <div class="card-body">
+                {{ form_start(form) }}
+                <div class="card-body">
+                    <div class="form-group">
+                        {{ form_row(form.username, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                     </div>
 
-            {{ form_row(form.username, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                      <div class="form-group">
+                        {{ form_row(form.password, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                     </div>
 
-            {{ form_row(form.password, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                      <div class="form-group">
+                        {{ form_row(form.firstname, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                     </div>
 
-            {{ form_row(form.firstname, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                      <div class="form-group">
+                        {{ form_row(form.lastname, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                     </div>
 
-            {{ form_row(form.lastname, {'label': 'Nom', 'attr': {'placeholder': 'Saisir votre nom...'}}) }}
+                      <div class="form-group">
+                        {{ form_row(form.email, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                     </div>
 
-            {{ form_row(form.email, {'label': 'Téléphone', 'attr': {'placeholder': 'Saisir votre numéro de téléphone...'}}) }}
+                      <div class="form-group">
+                        {{ form_row(form.birthdate, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                     </div>
 
-            {{ form_row(form.birthdate, {'label': 'Email', 'attr': {'placeholder': 'Saisir votre adresse email...'}}) }}
+                      <div class="form-group">
+                        {{ form_row(form.function, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                     </div>
 
-            {{ form_row(form.function, {'label': 'Message', 'attr': {'placeholder': 'Saisir votre message...'}}) }}
+                      <div class="form-group">
+                        {{ form_row(form.classe, {'label': 'Prénom', 'attr': {'placeholder': 'Saisir votre prénom...'}}) }}
+                     </div>
+                </div>
+                
+            </div>
+            <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Envoyer</button>
+             </div>
+            </div>
+            {{ form_end(form) }}  
+         </div>     
 
-            {{ form_row(form.classe, {'label': 'Message', 'attr': {'placeholder': 'Saisir votre message...'}}) }}
+  
+        
 
-            <button type="submit" class="btn btn-primary">Envoyer</button>
+    
+        
 
-        {{ form_end(form) }}
-    </div>
 
 {% endblock %}

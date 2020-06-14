@@ -1,32 +1,45 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Users{% endblock %}
-
+{% extends 'backoffice/base.html.twig' %}
+{% block page_title %} Gestion d'utilisteurs {% endblock %}
+{% block fil_ariane %} 
+<li class="breadcrumb-item active">Liste utilisateurs</li>
+{% endblock %}
 {% block body %}
-    
-        <h1 class="text-center mt-3">Gestion d'utilisteurs</h1><hr>
 
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Firstname</th>
-      <th scope="col">Lastname</th>
-      <th scope="col">Function</th>
-    </tr>
-  </thead>
-  <tbody>
-   {% for user in users %}
-   
-    <tr>
-      <th scope="row">{{ user.id }}</th>
-      <td>{{ user.firstname }}</td>
-      <td>{{ user.lastname }}</td>
-      <td>{{ user.function }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+     
+    <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">List des utilisateurs</h3>
+                <div class="card-tools"><a href="{{ path('user_add') }}" class="btn btn-block btn-outline-success btn-sm">Ajouter utilisateur</a></div>                  
+                
+                
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>                  
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Firstname</th>
+                      <th>Lastname</th>
+                      <th style="width: 40px">Function</th>
+                    </tr>
+                  </thead>
+                   <tbody>
+                        {% for user in users %}
+                        
+                          <tr>
+                            <th scope="row">{{ user.id }}</th>
+                            <td>{{ user.firstname }}</td>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.function }}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
        
                        
               
