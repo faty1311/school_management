@@ -324,7 +324,7 @@
         margin-bottom: 20px;
     }
 
-    .footer-global form button{
+    .footer-global form .button{
         border-radius: 3px;
         background-color:  #33383b;
         color: #ffffff;
@@ -332,5 +332,6 @@
         padding: 15px 50px;
         font-weight: bold;
         float: right;
+        width: 50%;
     }
 
