@@ -3,5 +3,9 @@ easy_admin:
     design:
       assets:
         css: ['css/custom_backend.css']
+    user:
+        display_name: true
+        display_avatar: false
+        name_property_path: 'username'
 
 
