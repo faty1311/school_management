@@ -7,6 +7,11 @@ use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
+
 
 class UserController extends AbstractController
 {
@@ -45,13 +50,19 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
     
+            $this->addFlash('success', "L'utilisateur a bien été ajouté !");
+
             return $this->redirectToRoute('user_list');
+            
+            
         }
 
         return $this->render('user/form.html.twig', [
             'form' => $form->createView(),
             'editMode' => $user->getId() !== null
         ]);
+      
+       
     }
 
 
@@ -72,6 +83,8 @@ class UserController extends AbstractController
             
            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
+
+            $this->addFlash('primary', "L'utilisateur a bien été modifié !");
     
             return $this->redirectToRoute('user_list');
         } 
@@ -95,24 +108,15 @@ class UserController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $user = $entityManager->getRepository(User::class)->find($id);
         $entityManager->remove($user);
-        $entityManager->flush();
-
-    //     $form = $this->createForm(UserType::class, $user);
-        
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-            
-    //        $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->flush();
     
-           return $this->redirectToRoute('user_list');
-    //     } 
 
-    //    return $this->render('user/form.html.twig', [
-    //     'form' => $form->createView(),
-    //     'editMode' => $user->getId() !== null
-    //    ]);
+            $entityManager->flush();
+
+            $this->addFlash('danger', "L'utilisateur a bien été supprimé !");
+
+            return $this->redirectToRoute('user_list');
+           
+
     
     }
 
