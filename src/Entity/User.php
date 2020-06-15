@@ -9,8 +9,9 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
+
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
 {
@@ -195,6 +196,10 @@ class User implements UserInterface
     {
         return array('ROLE_USER');
     }
+
+    // public function getRoles() 
+    // { return ['ROLE_USER']; 
+    // }
     
     
     public function eraseCredentials()
