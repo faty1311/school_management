@@ -118,8 +118,8 @@
     text-decoration:none;
     
     }
-    /* style H1 */
-    .titlenew ,.titleconfi {
+    /* style titre */
+    .titlenew ,.titleconfi, .titlehobbie {
         text-align: center;
         padding-top: 30px;
         font-size: 60px;
