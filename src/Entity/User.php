@@ -64,10 +64,11 @@ class User implements UserInterface
 
     private $function;
 
+    // cascade={"persist", "remove"}
 
     /**
      * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="users")
-     * @ORM\JoinColumn(name="class_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="class_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $classe;
 
