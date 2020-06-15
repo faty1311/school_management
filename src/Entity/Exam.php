@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ExamRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,16 +28,17 @@ class Exam
      */
     private $mark;
 
-        /**
+    /**
      * @ORM\Column(type="date")
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="exams")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $subject;
 
-
-
-  
-  
 
     public function getId(): ?int
     {
@@ -83,7 +82,6 @@ class Exam
     }
 
 
-
     public function getSubject(): ?Subject
     {
         return $this->subject;
@@ -95,6 +93,7 @@ class Exam
 
         return $this;
     }
-   
+
+
 }
 
