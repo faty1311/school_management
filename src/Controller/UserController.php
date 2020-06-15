@@ -4,9 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 class UserController extends AbstractController
 {
@@ -27,7 +32,7 @@ class UserController extends AbstractController
     /**
      * @Route("admin/user/add", name="user_add")
      */
-    public function new(Request $request)
+    public function new(Request $request,EntityManagerInterface $manager,UserPasswordEncoderInterface $encoder)
     {
         
         $user = new User();
@@ -36,27 +41,37 @@ class UserController extends AbstractController
         
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        // if ($form->isSubmitted() && $form->isValid()) {
             
-            $user = $form->getData();
+        //     $user = $form->getData();
     
            
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-    
+        //     $entityManager = $this->getDoctrine()->getManager();
+        //     $entityManager->persist($user);
+        //     $entityManager->flush();
+
+        if($form->isSubmitted() && $form->isValid())
+         {
+            $hash = $encoder->encodePassword($user,
+             $user->getPassword()); 
+             $user->setPassword($hash); 
+
+         $manager->persist($user); 
+         
+         $manager->flush(); 
+
             $this->addFlash('success', "L'utilisateur a bien été ajouté !");
 
             return $this->redirectToRoute('user_list');
             
-            
-        }
+        } 
+        
 
         return $this->render('user/form.html.twig', [
             'form' => $form->createView(),
             'editMode' => $user->getId() !== null
         ]);
-      
+    
        
     }
 
@@ -113,6 +128,38 @@ class UserController extends AbstractController
            
 
     
+    }
+
+
+     /**
+     * @Route("/connexion", name="user_login")
+     */
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
+        // Si l'utilisateur est déjà connecté on le redirige vers la page blog
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER'))
+        {
+            return $this->redirectToRoute('home');
+        }elseif ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('user_list');
+        }
+
+        // affiche le message d'erreur
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // recupère le dernier username saisi par l'internaute
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('user/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]); 
+    }
+
+    /**
+     * @Route("\deconnexion", name="user_logout")
+     */
+    public function logout(){
+        // cette fonction ne retourne rien, il nous suffit d'avoir une route pour la deconnexion, une fois créer, modifier le providers form_login
     }
 
    
