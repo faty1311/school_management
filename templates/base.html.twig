@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,35 +88,112 @@
         {% endblock %}
         </div>
 
-        
-        <footer id="contactfooter" class="footer-global">
-			<div class="footer-left">
-                <iframe style="border: 0;" src="https://goo.gl/maps/mnjUiGTVpFwHdYz46" width="300" height="300" frameborder="0"></iframe>
-				<p class="footer-copyright"> © 2020 - SchoolManagement </p>
-			</div>
 
-			<div class="footer-center">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/mobile.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/tablet.css') }}">
 
-				<div>
-					<i class="fa fa-map-marker"></i>
-					<p><span>45 Avenue de l'Ecole</span> Paris, 75000</p>
-				</div>
 
-				<div>
-					<i class="fa fa-phone"></i>
-					<p>00.00.00.00.00</p>
-				</div>
+    {% endblock %}
+</head>
+<body>
+<header>
+    <nav>
+        <div class="menu-icon">
+            <i class="fa fa-bars fa-2x"></i>
+        </div>
+        <div class="nameSite">
+            SCHOOLMANAGEMENT
+        </div>
+        <ul id="scrolling-menu">
+            <li><a href="{{ path('home') }}">Acceuil</a></li>
+            <li><a href="#">L'ecole</a>
+                <ul class="sous">
+                    <li><a href="{{ path('presentation') }}">Présentation</a></li>
+                    <li><a href="{{ path('reglement') }}">Réglement Intérieur</a></li>
+                    <li><a href="#">Cantine</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Activité Scolaire</a>
+                <ul class="sous">
+                    <li><a href="#">Clubs</a>
+                    </li>
+                    <li><a href="#">Voyage</a></li>
+                    <li><a href="#">Médiatheque</a></li>
+                </ul>
+            </li>
+            <li><a href="#contactfooter">Contact</a></li>
+            <li><a href="">Mon Espace Personnel</a>
+                <ul class="sous">
+                    <li><a href="">Mon Profil</a></li>
+                    <li><a href="#">Emploi du Temps</a></li>
+                    <li><a href="#">Mes Notes</a></li>
+                    <li><a href="#">Préparation des cours</a></li>
+                    <li><a href="#">Notations</a></li>
+                </ul>
+            </li>
+            <li><a href="#">BackOffice</a>
+                <ul class="sous">
+                    <li><a href="#">Gestion eleves</a></li>
+                    <li><a href="#">Gestion Profs</a></li>
+                    <li><a href="#">Gestion Classe</a></li>
+                    <li><a href="#">Gestion Matieres</a></li>
+                    <li><a href="#">Gestion Planning</a></li>
+                    <li><a href="#">Gestion Actualitées</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Connexion</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="content">
+    {% block body %}
 
-				<div>
-					<i class="fa fa-envelope"></i>
-					<p><a href="mailto:notreEmail@gmail.fr">notreEmail@gmail.fr</a></p>
-				</div>
 
-			</div>
+    {% endblock %}
+</div>
 
-			<div class="footer-right">
 
-				<p>Contactez Nous Directement</p>
+<footer id="contactfooter" class="footer-global">
+    <div class="footer-left">
+        <iframe style="border: 0;" src="https://goo.gl/maps/mnjUiGTVpFwHdYz46" width="300" height="300"
+                frameborder="0"></iframe>
+        <p class="footer-copyright"> © 2020 - SchoolManagement </p>
+    </div>
+
+    <div class="footer-center">
+
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>45 Avenue de l'Ecole</span> Paris, 75000</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>00.00.00.00.00</p>
+        </div>
+
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:notreEmail@gmail.fr">notreEmail@gmail.fr</a></p>
+        </div>
+
+    </div>
+
+    <div class="footer-right">
+
+        <p>Contactez Nous Directement</p>
+
+        <form action="#" method="post">
+
+            <input type="text" name="email" placeholder="Votre Email">
+            <textarea name="message" placeholder="Votre Message"></textarea>
+            <button>Envoyer</button>
+
+
+        </form>
+
+    </div>
 
 				<form action="mail.php" method="post">
 
@@ -123,22 +201,24 @@
 					<textarea name="message" placeholder="Votre Message"></textarea>
 					<input class="button" type="submit" placeholder="Envoyer"></input>
 
-				</form>
 
-			</div>
 
-        
+</footer>
 
-		</footer>
-    
 
-        {% block javascripts %}
+{% block javascripts %}
 
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-            <script type="text/javascript" src="js/app.js"></script>
-        
-        {% endblock %}
-    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+
+{% endblock %}
+</body>
 </html>

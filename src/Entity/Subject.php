@@ -24,37 +24,25 @@ class Subject
      */
     private $name;
 
-
-
     /**
      * @ORM\OneToMany(targetEntity=Lessons::class, mappedBy="subject", orphanRemoval=true)
      */
     private $lessons;
-
 
     /**
      * @ORM\Column(type="integer")
      */
     private $coefficient;
 
-
-
-
-
-      /**
+    /**
      * @ORM\OneToMany(targetEntity=Exam::class, mappedBy="subject")
      */
     private $exams;
-
-
 
     /**
      * @ORM\OneToMany(targetEntity=PlanningSubject::class, mappedBy="subject")
      */
     private $planningSubjects;
-
-  
-
 
     public function __construct()
     {
@@ -65,26 +53,12 @@ class Subject
     }
 
 
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-
-     /**
+    /**
      * @return Collection|Exam[]
      */
     public function getExams(): Collection
@@ -103,12 +77,11 @@ class Subject
         return $this;
     }
 
-
     public function removeExams(Exam $exams): self
     {
         if ($this->exams->contains($exams)) {
             $this->exams->removeElement($exams);
-         
+
             if ($exams->getSubject() === $this) {
                 $exams->setSubject(null);
             }
@@ -116,8 +89,6 @@ class Subject
 
         return $this;
     }
- 
-
 
     /**
      * @return Collection|Lessons[]
@@ -141,7 +112,7 @@ class Subject
     {
         if ($this->lessons->contains($lesson)) {
             $this->lessons->removeElement($lesson);
- 
+
             if ($lesson->getSubject() === $this) {
                 $lesson->setSubject(null);
             }
@@ -149,7 +120,6 @@ class Subject
 
         return $this;
     }
-
 
     public function getCoefficient(): ?int
     {
@@ -162,7 +132,6 @@ class Subject
 
         return $this;
     }
-
 
     /**
      * @return Collection|PlanningSubject[]
@@ -183,7 +152,6 @@ class Subject
         return $this;
     }
 
-
     public function removePlanningSubject(PlanningSubject $planningSubject): self
     {
         if ($this->planningSubjects->contains($planningSubject)) {
@@ -194,6 +162,23 @@ class Subject
 
             }
         }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

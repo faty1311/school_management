@@ -49,12 +49,12 @@ class ExamRepository extends ServiceEntityRepository
     */
 
     /*
-        public function findResult()
-        {
-            return $this->createQueryBuilder('e')
-                ->join('e.subjects', 's')->addSelect('s')
-                ->getQuery()
-                ->getResult();
-        }
-    */
+      public function findResult()
+      {
+          return $this->createQueryBuilder('e')
+              ->join('e.subject_id', 's')->addSelect('s')
+              ->getQuery()
+              ->getResult();
+      }
+  */
 }

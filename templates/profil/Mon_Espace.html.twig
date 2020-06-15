@@ -2,20 +2,38 @@
 
 
 {% block body %}
-    <div class="card mb-4 box-shadow col-md-6">
+    <div class="row diva">
+        <div class="card mb-4 b col-md-5 ">
 
-        <div class="card-body">
-            <h1 class="card-title pricing-card-title">Mon Profil</h1>
-            <ul class="list-unstyled mt-3 mb-4">
-                <li>Nom: {{ profile.firstName }}</li>
-                <li>Prénom: {{ profile.lastName }} </li>
-                <li>Date D'anniversaire: {{ profile.birthdate |date('Y-m-d') }}</li>
-                <li>Function: {{ profile.function }}</li>
-                <li><a href="{{ path('calendrier') }}" class="
-"> Emploi du Temps </a></li>
-                <li><a href="#">Mes Notes</a></li>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">Mon Profil</h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Nom: {{ profile.firstname }}</li>
+                    <li>Prénom: {{ profile.lastname }} </li>
 
-            </ul>
+                    <li>Function: {{ profile.function }}</li>
+
+                </ul>
+            </div>
         </div>
+        {% if profile.function == "élève" %}
+
+
+            <div class="col-md-5 divers">
+                <div class="emploi"><a href="">Mon Emploi du Temps</a></div>
+                <div class="emploi1"><a href="{{ path('note') }}">Mes Notes</a></div>
+                <div class="emploi2"><a href="{{ path('liste_file') }}">Mes Cours </a></div>
+
+            </div>
+        {% else %}
+
+
+            <div class="col-md-5 divers">
+                <div class="emploi"><a href="">Mon Emploi du Temps</a></div>
+                <div class="emploi1"><a href="{{ path('add_file') }}">Préparation du cours</a></div>
+                <div class="emploi2"><a href="{{ path('notation') }}">Notation</a></div>
+            </div>
+
+        {% endif %}
     </div>
 {% endblock %}
