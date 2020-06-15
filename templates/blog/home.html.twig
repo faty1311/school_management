@@ -2,56 +2,56 @@
 
 {% block body %}
 
-<h3>Réouverture progressive post-confinement</h3>
+<h3 class="titleconfi">Réouverture progressive post-confinement</h3>
 <div class="video">
     <iframe class="videoresponsive" width="700" height="450" src="https://www.youtube.com/embed/szymTEXVumU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 </div>
-    <hr><h3>Les Nouvelles de la Semaine</h3>
+    <hr><h3 class="titlenew">Les Nouvelles de la Semaine</h3>
     <div id="contentArticle">
 
             <div class="scene scene--card">
                 <div class="card">
                     <div class="card__face card__face--front">
-                        <h2>Titre de l'Article</h2><hr>
-                        <img src="https://picsum.photos/300/200" alt=""><hr>
+                        <h2>{{ article1.title }}</h2><hr>
+                        <img src="{{ article1.image }}" alt="{{ article1.image }}"><hr>
                         <p class="rotate"> Cliquez sur la carte  pour voir la description</p>
 
                     </div>
 
                     <div class="card__face card__face--back">
-                        <p> Description de l'article</p><hr>
-                        <p>date de l'article</p>
+                        <p>{{ article1.description }}</p><hr>
+                        <p>Date : {{ article1.date|date('H:i:s') }}</p>
                     </div>
                 </div>
             </div>
             <div class="scene scene--card">
                 <div class="card1">
                     <div class="card__face card__face--front">
-                        <h2>Titre de l'Article</h2><hr>
-                        <img src="https://picsum.photos/300/200" alt=""><hr>
+                        <h2>{{ article2.title }}</h2><hr>
+                        <img src="{{ article2.image }}" alt="{{ article2.image }}"><hr>
                         <p class="rotate"> Cliquez sur la carte  pour voir la description</p>
 
                     </div>
 
                     <div class="card__face card__face--back">
-                        <p> Description de l'article</p><hr>
-                        <p>date de l'article</p>
+                        <p> {{ article2.description }}</p><hr>
+                        <p class="date">Date : {{ article1.date|date('H:i:s') }}</</p>
                     </div>
                 </div>
             </div>
             <div class="scene scene--card">
                 <div class="card2">
                     <div class="card__face card__face--front">
-                        <h2>Titre de l'Article</h2><hr>
-                        <img src="https://picsum.photos/300/200" alt=""><hr>
+                        <h2>{{ article3.title }}</h2><hr>
+                        <img src="{{ article3.image }}" alt="{{ article3.image }}"><hr>
                         <p class="rotate"> Cliquez sur la carte  pour voir la description</p>
 
                     </div>
 
                     <div class="card__face card__face--back">
-                        <p> Description de l'article</p><hr>
-                        <p>date de l'article</p>
+                        <p> {{ article3.description }}</p><hr>
+                        <p>Date : {{ article3.date|date('H:i:s') }}</p>
                     </div>
                 </div>
             </div>

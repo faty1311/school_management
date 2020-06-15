@@ -1,26 +1,92 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}SchoolManagement{% endblock %}</title>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% block stylesheets %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-              crossorigin="anonymous">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}SchoolManagement{% endblock %}</title>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-        <link rel="stylesheet" href="{{ asset('css/hobbie.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/hobbie.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/reglement.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/presentation.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/ecole.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/cantine.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/style1.css') }}">
 
-        <link rel="stylesheet" href="{{ asset('css/style1.css') }}">
 
 
+            
+            
+            <link rel="stylesheet" href="{{ asset('css/mobile.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/tablet.css') }}">
+
+
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+        <nav>
+            <div class="menu-icon">
+                <i class="fa fa-bars fa-2x"></i>
+            </div>
+            <div class="nameSite">
+                SCHOOLMANAGEMENT
+            </div>
+            <ul id="scrolling-menu">
+                <li><a href="{{ path('home') }}">Acceuil</a></li>
+                <li><a href="{{ path("ecole") }}">L'ecole</a>
+                    <ul class="sous">
+                        <li><a href="{{ path('presentation') }}">Présentation</a></li>
+                        <li><a href="{{ path('reglement') }}">Réglement Intérieur</a></li>
+                        <li><a href="{{ path('cantine') }}">Cantine</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ path('hobbie') }}">Activité Scolaire</a>
+                    <ul class="sous">
+                        <li><a href="{{ path('club') }}">Clubs</a>
+                        </li>
+                        <li><a href="{{ path('voyage') }}">Voyage</a></li>
+                        <li><a href="{{ path('media') }}">Médiatheque</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contactfooter">Contact</a></li>
+                <li><a href="#">Mon Espace Personnel</a>
+                    <ul class="sous">
+                        <li><a href="#">Emploi du Temps</a></li>
+                        <li><a href="#">Mes Notes</a></li>
+                        <li><a href="#">Préparation des cours</a></li>
+                        <li><a href="#">Notations</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">BackOffice</a>
+                    <ul class="sous">
+                        <li><a href="#">Gestion eleves</a></li>
+                        <li><a href="#">Gestion Profs</a></li>
+                        <li><a href="#">Gestion Classe</a></li>
+                        <li><a href="#">Gestion Matieres</a></li>
+                        <li><a href="#">Gestion Planning</a></li>
+                        <li><a href="#">Gestion Actualitées</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Connexion</a></li>
+            </ul>
+        </nav>
+        </header>
+        <div class="content">
+        {% block body %}
+
+
+        {% endblock %}
+        </div>
 
 
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -124,9 +190,17 @@
             <textarea name="message" placeholder="Votre Message"></textarea>
             <button>Envoyer</button>
 
+
         </form>
 
     </div>
+
+				<form action="mail.php" method="post">
+
+					<input type="text" name="email" placeholder="Votre Email">
+					<textarea name="message" placeholder="Votre Message"></textarea>
+					<input class="button" type="submit" placeholder="Envoyer"></input>
+
 
 
 </footer>
