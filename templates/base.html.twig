@@ -13,11 +13,12 @@
 
 
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
- 
+
             <link rel="stylesheet" href="{{ asset('css/hobbie.css') }}">
             <link rel="stylesheet" href="{{ asset('css/reglement.css') }}">
             <link rel="stylesheet" href="{{ asset('css/presentation.css') }}">
             <link rel="stylesheet" href="{{ asset('css/ecole.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/cantine.css') }}">
             <link rel="stylesheet" href="{{ asset('css/style1.css') }}">
 
 
@@ -45,7 +46,7 @@
                     <ul class="sous">
                         <li><a href="{{ path('presentation') }}">Présentation</a></li>
                         <li><a href="{{ path('reglement') }}">Réglement Intérieur</a></li>
-                        <li><a href="#">Cantine</a></li>
+                        <li><a href="{{ path('cantine') }}">Cantine</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ path('hobbie') }}">Activité Scolaire</a>
