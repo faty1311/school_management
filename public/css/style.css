@@ -183,7 +183,7 @@
     }
     
     .card__face--back {
-        background: black;
+        background: grey;
         transform: rotateY(180deg);
     }
     .card__face--front p{
@@ -195,7 +195,7 @@
     .footer-global{
         background: #666;
         width: 100%;
-        padding: 55px 50px;
+        padding: 15px 50px;
     }
     
     .footer-global .footer-left,
@@ -203,6 +203,18 @@
     .footer-global .footer-right{
         display: inline-block;
         vertical-align: top;
+    }
+    /** retour en haut **/
+    .comeback{
+        text-align: end;
+        margin-right:65px;
+    }
+    .linkcomeback{
+        font-size: 14px;
+       
+    }
+    .linkcomeback:hover{
+        color:  #ffffff;
     }
     
     /* Footer left */
@@ -335,4 +347,4 @@
         float: right;
         width: 50%;
     }
-
+    

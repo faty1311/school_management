@@ -33,11 +33,14 @@ class BlogController extends AbstractController
         $article3 = $repository->find(3);
         dump($article3);
 
+
+
         return $this->render('blog/home.html.twig', [
             'title' => 'Bienvenue sur la page d\'acceuil',
             'article1' => $article1,
             'article2' => $article2,
-            'article3' => $article3
+            'article3' => $article3,
+
         ]);
     }
     /**
@@ -97,6 +100,24 @@ class BlogController extends AbstractController
             'mercredi' => $mercredi,
             'jeudi' => $jeudi,
             'vendredi' => $vendredi,
+        ]);
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact()
+    {
+
+        $retour = mail('lovezoupi@gmail', 'Envoi depuis la page Contact', $_POST['message'], 'From: ' . $_POST['email']);
+        // if ($retour) {
+        //     echo '<p>Votre message a bien été envoyé.</p>';
+        // }
+
+        return $this->render('blog/ecole.html.twig', [
+            'title' => 'Bienvenue sur le page de contact',
+            'retour' => $retour,
+
         ]);
     }
 }
