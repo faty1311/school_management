@@ -88,12 +88,36 @@ class User implements UserInterface
      */
     private $absences; 
 
+    /**
+     * @var array
+     *
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
 
     public function __construct()
     {
         $this->isActive = true;
         $this->exams = new ArrayCollection();
         
+    }
+
+    public function getRoles() 
+    { 
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $Roles): self
+    {
+        
+        $this->roles = $Roles;
+        return $this;
+
+
     }
 
     
@@ -197,14 +221,8 @@ class User implements UserInterface
     }
 
 
-    public function getRoles(): ?array
-    {
-        return array('ROLE_USER');
-    }
 
-    // public function getRoles() 
-    // { return ['ROLE_USER']; 
-    // }
+
     
     
     public function eraseCredentials()

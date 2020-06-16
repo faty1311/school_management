@@ -69,17 +69,19 @@
                         <li><a href="#">Notations</a></li>
                     </ul>
                 </li>
-                <li><a href="#">BackOffice</a>
-                    <ul class="sous">
-                        <li><a href="#">Gestion eleves</a></li>
-                        <li><a href="#">Gestion Profs</a></li>
-                        <li><a href="#">Gestion Classe</a></li>
-                        <li><a href="#">Gestion Matieres</a></li>
-                        <li><a href="#">Gestion Planning</a></li>
-                        <li><a href="#">Gestion Actualitées</a></li>
-                    </ul>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('admin') }}">BackOffice</a>
+                 {% endif %}
                 </li>
-                <li><a href="#">Connexion</a></li>
+                {% if not app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('user_login') }}">Connexion</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('user_logout') }}">Déconnexion</a>
+                    </li>
+                {% endif %}
             </ul>
         </nav>
         </header>
