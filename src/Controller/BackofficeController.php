@@ -23,7 +23,7 @@ class BackofficeController extends AbstractController
         ]);
     }
     /**
-     * @Route("/backPlanning", name="backPlanning")
+     * @Route("/backSubject", name="backSubject")
      */
     public function backSubject(SubjectRepository $repo)
     {
