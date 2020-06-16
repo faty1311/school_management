@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class BackofficeController extends AbstractController
 {
     /**
-     * @Route("/backoffice", name="backoffice")
+     * @Route("/admin", name="admin")
      */
     public function index()
     {

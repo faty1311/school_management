@@ -118,8 +118,8 @@
     text-decoration:none;
     
     }
-    /* style H1 */
-    h3{
+    /* style titre */
+    .titlenew ,.titleconfi, .titlehobbie {
         text-align: center;
         padding-top: 30px;
         font-size: 60px;
@@ -183,18 +183,19 @@
     }
     
     .card__face--back {
-        background: black;
+        background: grey;
         transform: rotateY(180deg);
     }
     .card__face--front p{
         font-size: 20px;
     }
+    
 
     /* LE STYLE DU FOOTER*/
     .footer-global{
         background: #666;
         width: 100%;
-        padding: 55px 50px;
+        padding: 15px 50px;
     }
     
     .footer-global .footer-left,
@@ -202,6 +203,18 @@
     .footer-global .footer-right{
         display: inline-block;
         vertical-align: top;
+    }
+    /** retour en haut **/
+    .comeback{
+        text-align: end;
+        margin-right:65px;
+    }
+    .linkcomeback{
+        font-size: 14px;
+       
+    }
+    .linkcomeback:hover{
+        color:  #ffffff;
     }
     
     /* Footer left */
@@ -256,9 +269,10 @@
         line-height:2;
     }
     
-    .footer-global .footer-center p a{
+    .footer-global .footer-center p .emaillien{
         color:  #ffffff;
-        text-decoration: none;;
+        text-decoration: none;
+        font-size:16px;;
     }   
     /* Partie Droite du Footer */
     
@@ -323,7 +337,7 @@
         margin-bottom: 20px;
     }
 
-    .footer-global form button{
+    .footer-global form .button{
         border-radius: 3px;
         background-color:  #33383b;
         color: #ffffff;
@@ -331,5 +345,6 @@
         padding: 15px 50px;
         font-weight: bold;
         float: right;
+        width: 50%;
     }
-
+    

@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
+
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
 {
@@ -29,8 +31,12 @@ class User implements UserInterface
      /**
      * @ORM\Column(type="string", length=255)
      */
-
     private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password",message="Les mots de passe ne correspondent pas")
+     */
+    public $confirm_password;
 
      /**
      * @ORM\Column(type="string", length=60, unique=true)
@@ -64,10 +70,11 @@ class User implements UserInterface
 
     private $function;
 
+    // cascade={"persist", "remove"}
 
     /**
      * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="users")
-     * @ORM\JoinColumn(name="class_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="class_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $classe;
 
@@ -81,12 +88,36 @@ class User implements UserInterface
      */
     private $absences; 
 
+    /**
+     * @var array
+     *
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
 
     public function __construct()
     {
         $this->isActive = true;
         $this->exams = new ArrayCollection();
         
+    }
+
+    public function getRoles() 
+    { 
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $Roles): self
+    {
+        
+        $this->roles = $Roles;
+        return $this;
+
+
     }
 
     
@@ -190,10 +221,8 @@ class User implements UserInterface
     }
 
 
-    public function getRoles(): ?array
-    {
-        return array('ROLE_USER');
-    }
+
+
     
     
     public function eraseCredentials()
@@ -279,6 +308,7 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->username;
+        return $this->birthdate;
     }
 
 }
