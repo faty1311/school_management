@@ -36,42 +36,32 @@ class UserController extends AbstractController
     {
         
         $user = new User();
-
-        $form = $this->createForm(UserType::class, $user);
-        
+        $form = $this->createForm(UserType::class, $user);      
         $form->handleRequest($request);
 
         // if ($form->isSubmitted() && $form->isValid()) {
-            
-        //     $user = $form->getData();
-    
-           
+        //     $user = $form->getData(); 
         //     $entityManager = $this->getDoctrine()->getManager();
         //     $entityManager->persist($user);
         //     $entityManager->flush();
 
         if($form->isSubmitted() && $form->isValid())
          {
-            $hash = $encoder->encodePassword($user,
-             $user->getPassword()); 
+            $hash = $encoder->encodePassword($user,$user->getPassword()); 
              $user->setPassword($hash); 
+            //  $user->setRoles(["ROLE_USER"]);
 
          $manager->persist($user); 
-         
          $manager->flush(); 
 
             $this->addFlash('success', "L'utilisateur a bien été ajouté !");
-
             return $this->redirectToRoute('user_list');
             
         } 
-        
-
         return $this->render('user/form.html.twig', [
             'form' => $form->createView(),
             'editMode' => $user->getId() !== null
-        ]);
-    
+        ]);   
        
     }
 
