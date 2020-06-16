@@ -10,10 +10,23 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-            
+
+
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+ 
+            <link rel="stylesheet" href="{{ asset('css/hobbie.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/reglement.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/presentation.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/ecole.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/style1.css') }}">
+
+
+
+            
+            
             <link rel="stylesheet" href="{{ asset('css/mobile.css') }}">
             <link rel="stylesheet" href="{{ asset('css/tablet.css') }}">
+
 
         {% endblock %}
     </head>
@@ -28,14 +41,14 @@
             </div>
             <ul id="scrolling-menu">
                 <li><a href="{{ path('home') }}">Acceuil</a></li>
-                <li><a href="#">L'ecole</a>
+                <li><a href="{{ path("ecole") }}">L'ecole</a>
                     <ul class="sous">
                         <li><a href="{{ path('presentation') }}">Présentation</a></li>
                         <li><a href="{{ path('reglement') }}">Réglement Intérieur</a></li>
                         <li><a href="#">Cantine</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Activité Scolaire</a>
+                <li><a href="{{ path('hobbie') }}">Activité Scolaire</a>
                     <ul class="sous">
                         <li><a href="#">Clubs</a>
                         </li>

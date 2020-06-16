@@ -35,10 +35,7 @@ class Exam
      */
     private $date;
 
-
-
-
-        /**
+    /**
      * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="exams")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -89,6 +86,7 @@ class Exam
     }
 
 
+
     public function getSubject(): ?Subject
     {
         return $this->subject;
@@ -102,3 +100,4 @@ class Exam
     }
    
 }
+

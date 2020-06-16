@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9757ac69bd0f608941004d50f39caabb",
+    "content-hash": "7c7c6ad23fecab554e510756f51cc57b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1924,14 +1924,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BabDev/Pagerfanta.git",
-
-                "reference": "a53ff01d521648d9dbca19b93ac6bc75a59b0972"
+                "reference": "fd00eb74632fecc0265327e9fe0eddc08c72b238"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BabDev/Pagerfanta/zipball/a53ff01d521648d9dbca19b93ac6bc75a59b0972",
-                "reference": "a53ff01d521648d9dbca19b93ac6bc75a59b0972",
-
+                "url": "https://api.github.com/repos/BabDev/Pagerfanta/zipball/fd00eb74632fecc0265327e9fe0eddc08c72b238",
+                "reference": "fd00eb74632fecc0265327e9fe0eddc08c72b238",
                 "shasum": ""
             },
             "require": {
@@ -1983,7 +1981,6 @@
                 "paginator",
                 "paging"
             ],
-
             "funding": [
                 {
                     "url": "https://github.com/mbabker",
@@ -1991,7 +1988,6 @@
                 }
             ],
             "time": "2020-06-09T15:25:12+00:00"
-
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -3682,16 +3678,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v5.1.0",
+            "version": "v5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "4d492698887bcf88569ae978362b6ca2c9a7df4a"
+                "reference": "45eec15fa32ea0dd0962bd36fe00e49edc54cce7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/4d492698887bcf88569ae978362b6ca2c9a7df4a",
-                "reference": "4d492698887bcf88569ae978362b6ca2c9a7df4a",
+                "url": "https://api.github.com/repos/symfony/form/zipball/45eec15fa32ea0dd0962bd36fe00e49edc54cce7",
+                "reference": "45eec15fa32ea0dd0962bd36fe00e49edc54cce7",
                 "shasum": ""
             },
             "require": {
@@ -3724,6 +3720,7 @@
                 "symfony/config": "^4.4|^5.0",
                 "symfony/console": "^4.4|^5.0",
                 "symfony/dependency-injection": "^4.4|^5.0",
+                "symfony/expression-language": "^4.4|^5.0",
                 "symfony/http-foundation": "^4.4|^5.0",
                 "symfony/http-kernel": "^4.4|^5.0",
                 "symfony/security-csrf": "^4.4|^5.0",
@@ -3780,7 +3777,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-30T20:35:19+00:00"
+            "time": "2020-06-12T08:39:51+00:00"
         },
         {
             "name": "symfony/framework-bundle",

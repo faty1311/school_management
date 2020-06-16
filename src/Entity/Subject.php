@@ -31,7 +31,6 @@ class Subject
      */
     private $lessons;
 
-   
 
     /**
      * @ORM\Column(type="integer")
@@ -39,15 +38,15 @@ class Subject
     private $coefficient;
 
 
+
+
+
       /**
      * @ORM\OneToMany(targetEntity=Exam::class, mappedBy="subject")
      */
     private $exams;
 
-          /**
-     * @ORM\OneToMany(targetEntity=Absence::class, mappedBy="subject")
-     */
-    private $absences;
+
 
     /**
      * @ORM\OneToMany(targetEntity=PlanningSubject::class, mappedBy="subject")
@@ -56,11 +55,13 @@ class Subject
 
   
 
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
         $this->exams = new ArrayCollection();
-        $this->planningSubjects = new ArrayCollection();
+
+
     }
 
 
@@ -82,6 +83,7 @@ class Subject
         return $this;
     }
 
+
      /**
      * @return Collection|Exam[]
      */
@@ -91,6 +93,7 @@ class Subject
     }
 
     public function addExams(Exam $exams): self
+
     {
         if (!$this->exams->contains($exams)) {
             $this->exams[] = $exams;
@@ -99,6 +102,7 @@ class Subject
 
         return $this;
     }
+
 
     public function removeExams(Exam $exams): self
     {
@@ -113,36 +117,7 @@ class Subject
         return $this;
     }
  
-        /**
-     * @return Collection|Absence[]
-     */
-    public function getAbsences(): Collection
-    {
-        return $this->absences;
-    }
 
-    public function addAbsences(Absence $absences): self
-    {
-        if (!$this->absences->contains($absences)) {
-            $this->absences[] = $absences;
-            $absences->setSubject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAbsences(Absence $absences): self
-    {
-        if ($this->absences->contains($absences)) {
-            $this->absences->removeElement($absences);
-         
-            if ($absences->getSubject() === $this) {
-                $absences->setSubject(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Lessons[]
@@ -175,7 +150,6 @@ class Subject
         return $this;
     }
 
-    
 
     public function getCoefficient(): ?int
     {
@@ -188,6 +162,7 @@ class Subject
 
         return $this;
     }
+
 
     /**
      * @return Collection|PlanningSubject[]
@@ -202,10 +177,12 @@ class Subject
         if (!$this->planningSubjects->contains($planningSubject)) {
             $this->planningSubjects[] = $planningSubject;
             $planningSubject->setSubject($this);
+
         }
 
         return $this;
     }
+
 
     public function removePlanningSubject(PlanningSubject $planningSubject): self
     {
@@ -214,9 +191,12 @@ class Subject
             // set the owning side to null (unless already changed)
             if ($planningSubject->getSubject() === $this) {
                 $planningSubject->setSubject(null);
-            }
-        }
 
-        return $this;
+            }
+            return $this;
+        }
+        
+
+    
     }
 }
