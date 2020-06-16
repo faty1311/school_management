@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
@@ -30,8 +31,12 @@ class User implements UserInterface
      /**
      * @ORM\Column(type="string", length=255)
      */
-
     private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password",message="Les mots de passe ne correspondent pas")
+     */
+    public $confirm_password;
 
      /**
      * @ORM\Column(type="string", length=60, unique=true)
