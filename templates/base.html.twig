@@ -33,7 +33,7 @@
         {% endblock %}
     </head>
     <body>
-        <header>
+        <header id="comebacktop">
         <nav>
             <div class="menu-icon">
                 <i class="fa fa-bars fa-2x"></i>
@@ -90,6 +90,7 @@
 
 
 <footer id="contactfooter" class="footer-global">
+    <div class="comeback"><p><a class="linkcomeback" href="#comebacktop">Revenir en haut de la page</a></p></div>
     <div class="footer-left">
         <iframe style="border: 0;" src="https://goo.gl/maps/mnjUiGTVpFwHdYz46" width="300" height="300"
                 frameborder="0"></iframe>
@@ -119,12 +120,14 @@
 
         <p>Contactez Nous Directement</p>
 
-			<form action="mail.php" method="post">
+			<form action="{{ path('contact') }}" method="post">
 
 					<input type="text" name="email" placeholder="Votre Email">
 					<textarea name="message" placeholder="Votre Message"></textarea>
-					<input class="button" type="submit" placeholder="Envoyer"></input>
-            </form>
+                    <input class="button" type="submit" placeholder="Envoyer"></input> 
+                    
+            </form> 
+        <p class="redirection"> *Vous serez redirigé vers la page Ecole a l'envoye du mail</p>    
 
 
 </footer>
