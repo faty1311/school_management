@@ -161,9 +161,11 @@ class Subject
                 $planningSubject->setSubject(null);
 
             }
+            return $this;
         }
+        
 
-        return $this;
+    
     }
 
     public function __toString()

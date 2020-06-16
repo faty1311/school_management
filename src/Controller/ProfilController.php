@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Exam;
 use App\Entity\Lessons;
-use App\Entity\User;
 use App\Form\ExamType;
 use App\Form\LessonsType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,14 +19,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfilController extends AbstractController
 {
     /**
-     * @Route("/profil/{id}", name="profil")
-     * @param $id
+     * @Route("/profil", name="profil")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index($id)
+    public function index()
     {
+        $user = $this->getUser();
+
         return $this->render('profil/Mon_Espace.html.twig', [
-            'profile' => $this->getDoctrine()->getRepository(User::class)->find($id),
+            'profile' => $user,
         ]);
     }
 

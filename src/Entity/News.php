@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\NewsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\NewsRepository;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=NewsRepository::class)
@@ -71,7 +72,7 @@ class News
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?File $image = null): self
     {
         $this->image = $image;
 

@@ -1,29 +1,25 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-
-    <table class="table table-bordered">
-
-        <tr>
-            <th>Nom Matière</th>
-            <th>Notes</th>
-            <th>Date</th>
-
-
-        </tr>
-        {% for newExam in exam %}
+    <div class="container">
+        <table class="table table-bordered col-md-8 mx-auto">
 
             <tr>
-                <td>{{ newExam.Subject.name }}</td>
-
-                <td>{{ newExam.mark }}</td>
-                <td>{{ newExam.date |date('Y-m-d') }}</td>
-
-
+                <th>Nom Matière</th>
+                <th>Notes</th>
+                <th>Date</th>
             </tr>
-        {% endfor %}
+            {% for newExam in exam %}
+                <tr>
+                    <td>{{ newExam.Subject.name }}</td>
+                    <td>{{ newExam.mark }}</td>
+                    <td>{{ newExam.date |date('Y-m-d') }}</td>
 
-    </table>
 
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
 
 {% endblock %}
