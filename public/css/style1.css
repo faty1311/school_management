@@ -11,13 +11,13 @@
 
 div .emploi {
     height: 10vh;
-    background: #00bb00;
+    background-color: rgba(128, 128, 128, 0.20);
     border-radius: 5px 5px 5px 5px;
 }
 
 div .emploi1 {
     height: 10vh;
-    background: #1ea471;
+    background-color: rgba(128, 128, 128, 0.20);
     border-radius: 5px 5px 5px 5px;
     margin-top: 15px;
 
@@ -26,7 +26,7 @@ div .emploi1 {
 
 div .emploi2 {
     height: 10vh;
-    background: #0000cc;
+    background-color: rgba(128, 128, 128, 0.20);
     border-radius: 5px 5px 5px 5px;
     margin-top: 15px;
     align-self: center;
@@ -39,12 +39,12 @@ div .emploi2 {
     justify-content: space-between;
 }
 
-a {
-    color: #fff;
+.lien {
+    color: rgb(87, 87, 87);
     font-size: 30px;
 }
 
-divers emploi a:hover {
+divers emploi .lien:hover {
     text-decoration: none;
     background: white;
     font-size: 16px;

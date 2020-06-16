@@ -1,10 +1,9 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-
-    <table class="table table-bordered">
-
     <h1 class="display-4 text-center">Ajouter une note </h1>
+    <br><br>
+
 
     {{ form_start(exam,{ 'attr' : {'class': "col-md-6 mx-auto"}}) }}
     {{ form_row(exam.user) }}

@@ -38,6 +38,10 @@
                      </div>
 
                       <div class="form-group">
+                        {{ form_row(form.confirm_password, {'label': 'confirmer le mot de passe', 'attr': {'placeholder': 'Confirmer le mot de passe...'}}) }}
+                     </div>                     
+
+                      <div class="form-group">
                         {{ form_row(form.email, {'label': 'Email', 'attr': {'placeholder': 'Saisir l\'\email...'}}) }}
                      </div>
 

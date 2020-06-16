@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,6 +62,7 @@
                 <li><a href="#contactfooter">Contact</a></li>
                 <li><a href="#">Mon Espace Personnel</a>
                     <ul class="sous">
+                        <li><a href="{{ path("profil", {"id" : app.session}) }}">Mon Profil</a></li>
                         <li><a href="#">Emploi du Temps</a></li>
                         <li><a href="#">Mes Notes</a></li>
                         <li><a href="#">Préparation des cours</a></li>
@@ -87,6 +89,8 @@
 
         {% endblock %}
         </div>
+
+
 
 
 <footer id="contactfooter" class="footer-global">
@@ -120,6 +124,7 @@
 
         <p>Contactez Nous Directement</p>
 
+
 			<form action="{{ path('contact') }}" method="post">
 
 					<input type="text" name="email" placeholder="Votre Email">
@@ -128,6 +133,7 @@
                     
             </form> 
         <p class="redirection"> *Vous serez redirigé vers la page Ecole a l'envoye du mail</p>    
+
 
 
 </footer>
