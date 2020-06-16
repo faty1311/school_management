@@ -1,7 +1,12 @@
 {% extends 'backoffice/base.html.twig' %}
 {% block page_title %} Gestion d'utilisteurs {% endblock %}
 {% block fil_ariane %} 
-<li class="breadcrumb-item active">Ajouter utilisateur</li>
+  {% if editMode %}
+<li class="breadcrumb-item active">Modification d'un utilisateur</li>
+  {% else %}
+<li class="breadcrumb-item active">Ajout d'un utilisateur</li>
+  {% endif %}
+
 {% endblock %}
 
 {% block body %}
@@ -33,6 +38,10 @@
                      </div>
 
                       <div class="form-group">
+                        {{ form_row(form.confirm_password, {'label': 'confirmer le mot de passe', 'attr': {'placeholder': 'Confirmer le mot de passe...'}}) }}
+                     </div>                     
+
+                      <div class="form-group">
                         {{ form_row(form.email, {'label': 'Email', 'attr': {'placeholder': 'Saisir l\'\email...'}}) }}
                      </div>
 
@@ -60,12 +69,12 @@
                 
             </div>
             <div class="card-footer">
-                  {# <button type="submit" class="btn btn-primary">Envoyer</button> #}
+                
                    <button type="submit" class="btn btn-primary">
                         {% if editMode %}
                             Enregistrer les modifications
                         {% else %}
-                            Ajouter l'utilisateur
+                            Ajouter
                         {% endif %}
                     </button>
              </div>

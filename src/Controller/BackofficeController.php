@@ -14,7 +14,16 @@ class BackofficeController extends AbstractController
 {
 
     /**
-     * @Route("/backSubject", name="backSubject")
+     * @Route("/admin", name="admin")
+     */
+    public function index()
+    {
+        return $this->render('backoffice/index.html.twig', [
+            'controller_name' => 'BackofficeController',
+        ]);
+    }
+    /**
+     * @Route("/backPlanning", name="backPlanning")
      */
     public function backSubject(SubjectRepository $repo)
     {

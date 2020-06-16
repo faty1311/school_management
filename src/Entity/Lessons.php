@@ -28,13 +28,17 @@ class Lessons
      * @ORM\ManyToMany(targetEntity=User::class)
      */
     private $userId;
-    
 
     /**
      * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="lessons")
      * @ORM\JoinColumn(nullable=false)
      */
     private $subject;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $files;
 
     public function __construct()
     {
@@ -92,6 +96,18 @@ class Lessons
     public function setSubject(?Subject $subject): self
     {
         $this->subject = $subject;
+
+        return $this;
+    }
+
+    public function getFiles(): ?string
+    {
+        return $this->files;
+    }
+
+    public function setFiles(string $files): self
+    {
+        $this->files = $files;
 
         return $this;
     }
