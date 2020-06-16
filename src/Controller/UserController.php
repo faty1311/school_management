@@ -15,6 +15,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
+
+
     /**
      * @Route("admin/user", name="user_list")
      */
@@ -39,17 +41,17 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);      
         $form->handleRequest($request);
 
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $user = $form->getData(); 
-        //     $entityManager = $this->getDoctrine()->getManager();
-        //     $entityManager->persist($user);
-        //     $entityManager->flush();
-
         if($form->isSubmitted() && $form->isValid())
          {
             $hash = $encoder->encodePassword($user,$user->getPassword()); 
-             $user->setPassword($hash); 
-            //  $user->setRoles(["ROLE_USER"]);
+             $user->setPassword($hash);
+
+             switch($user->getFunction()){
+                 case 'admin': $user->setRoles(['ROLE_ADMIN']); break;
+                 case 'student': $user->setRoles(['ROLE_STUDENT']); break;
+                 case 'teacher': $user->setRoles(['ROLE_TEACHER']); break;
+             }
+        
 
          $manager->persist($user); 
          $manager->flush(); 
@@ -126,18 +128,24 @@ class UserController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+     
         // Si l'utilisateur est déjà connecté on le redirige vers la page blog
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER'))
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
         {
+      
+            return $this->redirectToRoute('admin');
+        }elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER'))
+        {
+           
             return $this->redirectToRoute('home');
-        }elseif ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
-            return $this->redirectToRoute('user_list');
         }
 
-        // affiche le message d'erreur
         $error = $authenticationUtils->getLastAuthenticationError();
-        // recupère le dernier username saisi par l'internaute
         $lastUsername = $authenticationUtils->getLastUsername();
+
+
+      
+
 
         return $this->render('user/login.html.twig', [
             'last_username' => $lastUsername,
@@ -146,7 +154,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("\deconnexion", name="user_logout")
+     * @Route("/deconnexion", name="user_logout")
      */
     public function logout(){
         // cette fonction ne retourne rien, il nous suffit d'avoir une route pour la deconnexion, une fois créer, modifier le providers form_login

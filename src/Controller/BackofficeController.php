@@ -8,10 +8,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class BackofficeController extends AbstractController
 {
     /**
-     * @Route("/backoffice", name="backoffice")
+     * @Route("/admin", name="admin")
      */
     public function index()
     {
+        if(!$this->isGranted("ROLE_ADMIN"))
+        {
+            return $this->redirectToRoute('blog');
+        }
+
         return $this->render('backoffice/index.html.twig', [
             'controller_name' => 'BackofficeController',
         ]);
