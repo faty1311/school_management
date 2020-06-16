@@ -15,6 +15,7 @@
               crossorigin="anonymous">
 
 
+
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
         <link rel="stylesheet" href="{{ asset('css/hobbie.css') }}">
@@ -93,6 +94,8 @@
 </div>
 
 
+
+
 <footer id="contactfooter" class="footer-global">
     <div class="footer-left">
         <iframe style="border: 0;" src="https://goo.gl/maps/mnjUiGTVpFwHdYz46" width="300" height="300"
@@ -114,7 +117,7 @@
 
         <div>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:notreEmail@gmail.fr">notreEmail@gmail.fr</a></p>
+            <p><a class="emaillien" href="mailto:notreEmail@gmail.fr">notreEmail@gmail.fr</a></p>
         </div>
 
     </div>
@@ -123,22 +126,15 @@
 
         <p>Contactez Nous Directement</p>
 
-        <form action="#" method="post">
 
-            <input type="text" name="email" placeholder="Votre Email">
-            <textarea name="message" placeholder="Votre Message"></textarea>
-            <button>Envoyer</button>
+    
+			<form action="mail.php" method="post">
 
+					<input type="text" name="email" placeholder="Votre Email">
+					<textarea name="message" placeholder="Votre Message"></textarea>
+					<input class="button" type="submit" placeholder="Envoyer"></input>
+            </form>
 
-        </form>
-
-    </div>
-
-    <form action="mail.php" method="post">
-
-        <input type="text" name="email" placeholder="Votre Email">
-        <textarea name="message" placeholder="Votre Message"></textarea>
-        <input class="button" type="submit" placeholder="Envoyer"></input>
 
 
 </footer>

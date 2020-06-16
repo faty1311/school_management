@@ -118,8 +118,8 @@
     text-decoration:none;
     
     }
-    /* style H1 */
-    .titlenew ,.titleconfi {
+    /* style titre */
+    .titlenew ,.titleconfi, .titlehobbie {
         text-align: center;
         padding-top: 30px;
         font-size: 60px;
@@ -257,9 +257,10 @@
         line-height:2;
     }
     
-    .footer-global .footer-center p a{
+    .footer-global .footer-center p .emaillien{
         color:  #ffffff;
-        text-decoration: none;;
+        text-decoration: none;
+        font-size:16px;;
     }   
     /* Partie Droite du Footer */
     
