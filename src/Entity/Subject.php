@@ -193,8 +193,10 @@ class Subject
                 $planningSubject->setSubject(null);
 
             }
+            return $this;
         }
+        
 
-        return $this;
+    
     }
 }
