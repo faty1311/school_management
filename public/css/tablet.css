@@ -1,5 +1,6 @@
 /* ZONE RESPONSIVE ACCEUIL */
-@media(min-width: 1001px) and (max-width: 1300px){
+@media(min-width: 1001px) and (max-width: 1600px){
+
     /* Nav bar */
     .nameSite {
         line-height: 60px;
@@ -66,6 +67,16 @@
     /* RESPONSIVE PRESENTATION */
 
 
+     /* ############################################################# */
+    /* RESPONSIVE FOOTER */
+    .footer-global .footer-center {
+        padding-left: 25px;
+        }
+    .footer-global .footer-right {
+        width: 30%;
+        float :none; 
+        
+    }
 }
 
 

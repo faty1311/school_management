@@ -43,7 +43,7 @@
                 SCHOOLMANAGEMENT
             </div>
             <ul id="scrolling-menu">
-                <li><a href="{{ path('home') }}">Acceuil</a></li>
+                <li><a href="{{ path('home') }}">Accueil</a></li>
                 <li><a href="{{ path("ecole") }}">L'ecole</a>
                     <ul class="sous">
                         <li><a href="{{ path('presentation') }}">Présentation</a></li>
@@ -98,7 +98,7 @@
 <footer id="contactfooter" class="footer-global">
     <div class="comeback"><p><a class="linkcomeback" href="#comebacktop">Revenir en haut de la page</a></p></div>
     <div class="footer-left">
-        <iframe style="border: 0;" src="https://goo.gl/maps/mnjUiGTVpFwHdYz46" width="300" height="300"
+        <iframe style="border: 0;" src="{{ asset('img/googlemap.png') }}" width="300" height="300"
                 frameborder="0"></iframe>
         <p class="footer-copyright"> © 2020 - SchoolManagement </p>
     </div>
