@@ -82,6 +82,12 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            switch($user->getFunction()){
+                case 'admin': $user->setRoles(['ROLE_ADMIN']); break;
+                case 'student': $user->setRoles(['ROLE_STUDENT']); break;
+                case 'teacher': $user->setRoles(['ROLE_TEACHER']); break;
+            }
             
            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();

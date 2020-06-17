@@ -4,7 +4,7 @@
 
     <h1 class="display-4 text-center mt-2">Connexion</h1>
 
-    <form action="{{ path('user_login') }}" method="post" class="col-md-5 mx-auto">
+    <form action="{{ path('user_login') }}" method="post" class="col-md-5 mx-auto" style="padding: 20px;">
         
         {% if error %}
         <div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
