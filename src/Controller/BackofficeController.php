@@ -23,7 +23,7 @@ class BackofficeController extends AbstractController
         ]);
     }
     /**
-     * @Route("/backSubject", name="backSubject")
+     * @Route("/admin/backSubject", name="backSubject")
      */
     public function backSubject(SubjectRepository $repo)
     {
@@ -39,7 +39,7 @@ class BackofficeController extends AbstractController
     }
 
     /**
-     * @Route("/addSubject", name="addSubject")
+     * @Route("/admin/addSubject", name="addSubject")
      */
     public function addSubject(Request $request, EntityManagerInterface $manager )
     {    
@@ -63,7 +63,7 @@ class BackofficeController extends AbstractController
 
     }
     /**
-     * @Route("/editSubject/{id}", name="editSubject" , methods={"GET","POST"})
+     * @Route("/admin/editSubject/{id}", name="editSubject" , methods={"GET","POST"})
      */
     public function editSubject(Subject $subject, Request $request, EntityManagerInterface $manager)
         {
@@ -84,7 +84,7 @@ class BackofficeController extends AbstractController
             ]);
         }
     /**
-     * @Route("/editSubject/{id}", name="deleteSubject" , methods={"DELETE"})
+     * @Route("/admin/editSubject/{id}", name="deleteSubject" , methods={"DELETE"})
      */
     public function deleteSubject(Subject $subject, EntityManagerInterface $manager, Request $request )
     {    

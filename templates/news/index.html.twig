@@ -29,7 +29,7 @@
             <tr>
                 <th scope="row">{{ new.title}}</th>
                 <td>{{ new.description}}</td>
-                <td>{{ new.image}}</td>
+                <td><img src="{{ new.image}}" alt=""></td>
                 <td>{{ new.date|date('d/m H:i')}}</td>
                 <td>
                     <a class="btn btn-secondary" href="{{ path('editNews', {id: new.id}) }}">Modifier</a>

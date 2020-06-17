@@ -8,12 +8,15 @@ use App\Repository\NewsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class NewsController extends AbstractController
 {
     /**
-     * @Route("/indexNews", name="indexNews")
+     * @Route("/admin/indexNews", name="indexNews")
      */
     public function index(NewsRepository $repo)
     {
@@ -28,7 +31,7 @@ class NewsController extends AbstractController
         
     }
     /**
-     * @Route("/editNews/{id}", name="editNews", methods={"GET","POST"})
+     * @Route("/admin/editNews/{id}", name="editNews", methods={"GET","POST"})
      */
     public function editNews(News $news, Request $request, EntityManagerInterface $manager)
     { 
@@ -37,6 +40,7 @@ class NewsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+
             $news->setDate(new \DateTime());
             $manager->flush();
             $this->addFlash('success','Modification réussi !');
