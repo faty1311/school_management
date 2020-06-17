@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\NewsRepository;
 use Symfony\Component\HttpFoundation\File\File;
 
+
+
 /**
  * @ORM\Entity(repositoryClass=NewsRepository::class)
  */
@@ -72,12 +74,13 @@ class News
         return $this->image;
     }
 
-    public function setImage(?File $image = null): self
+    public function setImage(string $image): self
     {
         $this->image = $image;
 
         return $this;
     }
+
 
     public function getDate(): ?\DateTimeInterface
     {

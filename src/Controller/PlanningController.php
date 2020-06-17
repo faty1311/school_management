@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PlanningController extends AbstractController
 {
     /**
-     * @Route("/indexPlanning", name="indexPlanning")
+     * @Route("/admin/indexPlanning", name="indexPlanning")
      */
     public function index(PlanningSubjectRepository $repo)
     {
@@ -30,7 +30,7 @@ class PlanningController extends AbstractController
         
     }
     /**
-     * @Route("/editPlanning/{id}", name="editPlanning", methods={"GET","POST"})
+     * @Route("/admin/editPlanning/{id}", name="editPlanning", methods={"GET","POST"})
      */
     public function editPlanning(PlanningSubject $planning, Request $request,EntityManagerInterface $manager )
     {
@@ -52,7 +52,7 @@ class PlanningController extends AbstractController
         ]);
     }
     /**
-     * @Route("/addPlanning/", name="addPlanning")
+     * @Route("/admin/addPlanning/", name="addPlanning")
      */
     public function addPlanning(Request $request,EntityManagerInterface $manager)
     {
@@ -75,7 +75,7 @@ class PlanningController extends AbstractController
         ]);
     }
     /**
-     * @Route("/editPlanning/{id}", name="deletePlanning", methods={"DELETE"})
+     * @Route("/admin/editPlanning/{id}", name="deletePlanning", methods={"DELETE"})
      */
     public function deletePlanning(PlanningSubject $planning, Request $request,EntityManagerInterface $manager)
     {
