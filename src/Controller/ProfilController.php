@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Exam;
 use App\Entity\Lessons;
+use App\Entity\User;
 use App\Form\ExamType;
 use App\Form\LessonsType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,17 +27,23 @@ class ProfilController extends AbstractController
     {
         $user = $this->getUser();
 
-        return $this->render('profil/Mon_Espace.html.twig', [
-            'profile' => $user,
-        ]);
+        if (null === $user) {
+
+        } else {
+            $user = new User();
+        }
+        return $this->render('profil/Mon_Espace.html.twig');
     }
 
     /**
-     * @Route("/calendrier", name="calendrier")
+     * @Route("/calendrier", name="program")
      */
     public function calendrier()
     {
-        return $this->render('profil/calendrier.html.twig');
+        return $this->render('profil/calendrier.html.twig', [
+            'formation' => $this->getDoctrine()->getRepository(Planning::class)->findAll()
+
+        ]);
     }
 
     /**
