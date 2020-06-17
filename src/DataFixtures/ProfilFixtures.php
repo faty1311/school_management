@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Profil;
+use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Faker;
@@ -14,19 +14,19 @@ class ProfilFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-        $faker =\Faker\Factory::create('fr_FR');
+        // $faker =\Faker\Factory::create('fr_FR');
        
-        for($i=0; $i<= 10; $i++)
+        // for($i=0; $i<= 10; $i++)
 
-        {
-            $profil = new Profil();
-            $profil->setFirstname('toto'. $i);
-            $profil->setLastname('cre'. $i);
-            $profil->setBirthdate(dateTime());
-            $profil->setFunction('élèves'.$i);
-            $manager->persist($profil);
-        }
+        // {
+        //     $profil = new User();
+        //     $profil->setFirstname('toto'. $i);
+        //     $profil->setLastname('cre'. $i);
+        //     $profil->setBirthdate(2020-05-05);
+        //     $profil->setFunction('élèves'.$i);
+        //     $manager->persist($profil);
+        // }
 
-        $manager->flush();
+        // $manager->flush();
     }
 }

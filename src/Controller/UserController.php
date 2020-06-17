@@ -41,12 +41,6 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);      
         $form->handleRequest($request);
 
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $user = $form->getData(); 
-        //     $entityManager = $this->getDoctrine()->getManager();
-        //     $entityManager->persist($user);
-        //     $entityManager->flush();
-
         if($form->isSubmitted() && $form->isValid())
          {
             $hash = $encoder->encodePassword($user,$user->getPassword()); 
@@ -138,12 +132,12 @@ class UserController extends AbstractController
         // Si l'utilisateur est déjà connecté on le redirige vers la page blog
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
         {
-            // die('fz');
+      
             return $this->redirectToRoute('admin');
         }elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER'))
         {
-            // die('red');
-            return $this->redirectToRoute('presentation');
+           
+            return $this->redirectToRoute('home');
         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
