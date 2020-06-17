@@ -1,6 +1,10 @@
  /* ZONE RESPONSIVE ACCEUIL */
  @media(max-width: 1000px) {
     /* MENU RESPONSIVE */
+    nav{
+        position: initial;
+        z-index: 1000;
+    }
     .nameSite {
         position: fixed;
         top: 0;
@@ -82,5 +86,15 @@
 
     
     /* ############################################################# */
-    /* RESPONSIVE PRESENTATION */
+    /* RESPONSIVE footer */
+    .footer-global .footer-center {
+    padding-left: 25px;
+    }
+
+
+    .footer-global .footer-right {
+        width: 30%;
+        float :none; 
+        
+    }
 }
