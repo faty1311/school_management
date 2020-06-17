@@ -1,52 +1,52 @@
 security:
-    encoders:
-        App\Entity\User:
-            algorithm: bcrypt
-        
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    providers:
-        in_memory: { memory: null }
-        in_database: 
-            entity: 
-                class: App\Entity\User
-                property: username
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            pattern:   ^/
-            anonymous: lazy
+  encoders:
+    App\Entity\User:
+      algorithm: bcrypt
 
-            provider: in_database
+  # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+  providers:
+    in_memory: { memory: null }
+    in_database:
+      entity:
+        class: App\Entity\User
+        property: username
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      pattern:   ^/
+      anonymous: lazy
 
-            form_login: 
-                login_path: user_login
-                check_path: user_login
+      provider: in_database
 
-            logout:
-                path: user_logout
-                target: home
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#firewalls-authentication
+      form_login:
+        login_path: user_login
+        check_path: user_login
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-            
-    role_hierarchy:
-        ROLE_ADMIN: ROLE_USER
+      logout:
+        path: user_logout
+        target: home
+      # activate different ways to authenticate
+      # https://symfony.com/doc/current/security.html#firewalls-authentication
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
-    access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/blog, roles: ROLE_USER }
-        - { path: ^/login$, roles: ROLE_USER }
-        - { path: ^/login$, roles: ROLE_TEACHER }
-        - { path: ^/login$, roles: ROLE_STUDENT }
+      # https://symfony.com/doc/current/security/impersonating_user.html
+      # switch_user: true
 
-  
-    access_denied_url: /connexion
+  role_hierarchy:
+    ROLE_ADMIN: ROLE_USER
+
+  # Easy way to control access for large sections of your site
+  # Note: Only the *first* access control that matches will be used
+  access_control:
+  #    - { path: ^/admin, roles: ROLE_ADMIN }
+  #    # - { path: ^/blog, roles: ROLE_USER }
+  #    - { path: ^/login$, roles: ROLE_USER }
+  #    - { path: ^/login$, roles: ROLE_TEACHER }
+  #    - { path: ^/login$, roles: ROLE_STUDENT }
+  #
+  #
+  #    access_denied_url: /connexion
 
        
     
